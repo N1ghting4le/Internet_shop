@@ -1,0 +1,17 @@
+.button {
+  height: 50px;
+  width: 100%;
+  background-color: var(--accent-blue);
+  border-radius: 25px;
+  color: var(--secondary-white);
+  font-family: var(--font-raleway);
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}

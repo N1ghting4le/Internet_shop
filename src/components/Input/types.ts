@@ -7,4 +7,5 @@ export interface InputProps extends Omit<
   placeholder?: ReactNode;
   label?: string;
   error?: string | null;
+  password?: boolean;
 }

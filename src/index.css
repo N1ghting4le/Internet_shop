@@ -8,6 +8,7 @@
   --primary-body: #727280;
   --secondary-blue: #F0F4FB;
   --secondary-white: #FFFFFF;
+  --accent-blue: #2967FF;
 }
 
 * {
@@ -20,4 +21,5 @@ html,
 body {
   overflow-x: hidden;
   min-height: 100vh;
+  font-family: var(--font-raleway);
 }

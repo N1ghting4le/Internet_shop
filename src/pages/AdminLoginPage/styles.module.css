@@ -1,0 +1,10 @@
+.main {
+  padding: 50px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-family: var(--font-raleway);
+}
