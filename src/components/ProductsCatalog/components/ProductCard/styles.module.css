@@ -53,6 +53,12 @@
   cursor: default;
 }
 
+.loader {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
 .error {
   color: var(--primary-red);
   position: absolute;

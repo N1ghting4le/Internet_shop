@@ -1,7 +1,7 @@
 import { PRODUCTS_CATALOG_KEY } from "@/constants/localStorageKeys";
 import type { Product } from "@/types/product";
 
-import data from "../db.json";
+import data from "@/db.json";
 
 export const loadProducts = (): Product[] => {
   const productsRaw = localStorage.getItem(PRODUCTS_CATALOG_KEY);

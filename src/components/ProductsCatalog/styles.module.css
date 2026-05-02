@@ -1,12 +1,15 @@
-.loadingAndErrorContainer {
+.loadingAndMessage {
   margin-top: 50px;
   display: flex;
   justify-content: center;
 }
 
+.text {
+  font-size: 24px;
+}
+
 .error {
   color: var(--primary-red);
-  font-size: 24px;
 }
 
 .productsList {

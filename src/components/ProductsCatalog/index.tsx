@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { Loader } from "@/components/Loader";
+import { mergeClassNames } from "@/utils/mergeClassNames";
 
 import { ProductCard } from "./components/ProductCard";
 import classes from "./styles.module.css";
@@ -28,19 +29,35 @@ export function ProductsCatalog({ isAdminRoute }: ProductsCatalogProps) {
     };
   }, []);
 
-  if (isLoading) {
-    return (
-      <div className={classes.loadingAndErrorContainer}>
-        <Loader size={100} />
-      </div>
+  const deleteProductFromCatalog = (id: number) => {
+    setCatalogItems((catalogItems) =>
+      catalogItems.filter(({ product }) => product.id !== id),
     );
+  };
+
+  if (isLoading) {
+    return <Loader size={100} className={classes.loadingAndMessage} />;
   }
 
   if (isError) {
     return (
-      <div className={classes.loadingAndErrorContainer}>
-        <p className={classes.error}>Ошибка загрузки</p>
-      </div>
+      <p
+        className={mergeClassNames(
+          classes.loadingAndMessage,
+          classes.text,
+          classes.error,
+        )}
+      >
+        Ошибка загрузки
+      </p>
+    );
+  }
+
+  if (!catalogItems.length) {
+    return (
+      <p className={mergeClassNames(classes.loadingAndMessage, classes.text)}>
+        Каталог пуст
+      </p>
     );
   }
 
@@ -49,7 +66,7 @@ export function ProductsCatalog({ isAdminRoute }: ProductsCatalogProps) {
       {catalogItems.map(({ product, isInCart }) => (
         <ProductCard
           key={product.id}
-          {...{ isAdminRoute, product, isInCart }}
+          {...{ isAdminRoute, product, isInCart, deleteProductFromCatalog }}
         />
       ))}
     </ul>

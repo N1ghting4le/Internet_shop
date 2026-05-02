@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router";
 
 import { Button } from "@/components/Button";
+import { Loader } from "@/components/Loader";
 import { addToCart } from "@/utils/addToCart";
+import { deleteProductFromStorage } from "@/utils/deleteProductFromStorage";
 import { mergeClassNames } from "@/utils/mergeClassNames";
 
 import { PLACEHOLDER_SRC } from "./constants";
@@ -16,9 +18,21 @@ export function ProductCard({
   isAdminRoute,
   product,
   isInCart: isInCartInitial,
+  deleteProductFromCatalog,
 }: ProductCardProps) {
   const [isInCart, setIsInCart] = useState(isInCartInitial);
   const [isError, setIsError] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const timeoutRef = useRef<number | null>(null);
+
+  useEffect(
+    () => () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    },
+    [],
+  );
 
   const handleAddToCart = () => {
     if (isInCart) {
@@ -34,9 +48,22 @@ export function ProductCard({
     }
   };
 
-  const handleDelete = () => {};
-
   const { id, title, description, price } = product;
+
+  const handleDelete = () => {
+    setIsDeleting(true);
+
+    timeoutRef.current = setTimeout(() => {
+      try {
+        deleteProductFromStorage(id);
+        deleteProductFromCatalog(id);
+      } catch {
+        setIsError(true);
+      }
+
+      setIsDeleting(false);
+    }, 1000);
+  };
 
   return (
     <li className={classes.product}>
@@ -53,15 +80,19 @@ export function ProductCard({
       <Link to={getProductRoute(id, isAdminRoute)}>
         <Button className={classes.button}>Перейти к товару</Button>
       </Link>
-      <Button
-        className={mergeClassNames(
-          classes.button,
-          getSecondClassNameForSecondButton(isInCart, isAdminRoute),
-        )}
-        onClick={isAdminRoute ? handleDelete : handleAddToCart}
-      >
-        {getTextForSecondButton(isInCart, isAdminRoute)}
-      </Button>
+      {isDeleting ? (
+        <Loader size={40} className={classes.loader} />
+      ) : (
+        <Button
+          className={mergeClassNames(
+            classes.button,
+            getSecondClassNameForSecondButton(isInCart, isAdminRoute),
+          )}
+          onClick={isAdminRoute ? handleDelete : handleAddToCart}
+        >
+          {getTextForSecondButton(isInCart, isAdminRoute)}
+        </Button>
+      )}
       {isError && <p className={classes.error}>Произошла ошибка</p>}
     </li>
   );
