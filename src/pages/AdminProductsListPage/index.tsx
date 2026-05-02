@@ -1,3 +1,12 @@
+import { ProductsCatalog } from "@/components/ProductsCatalog";
+
+import classes from "./styles.module.css";
+
 export function AdminProductsListPage() {
-  return <h1>Страница товаров</h1>;
+  return (
+    <main className={classes.main}>
+      <h1>Каталог товаров</h1>
+      <ProductsCatalog isAdminRoute />
+    </main>
+  );
 }
