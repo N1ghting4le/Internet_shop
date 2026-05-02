@@ -1,22 +1,21 @@
 import { useState, useEffect } from "react";
 
 import { Loader } from "@/components/Loader";
-import type { Product } from "@/types/product";
 
 import { ProductCard } from "./components/ProductCard";
 import classes from "./styles.module.css";
-import type { ProductsCatalogProps } from "./types";
-import { loadProducts } from "./utils/loadProducts";
+import type { ProductsCatalogProps, CatalogItem } from "./types";
+import { getCatalogItems } from "./utils/getCatalogItems";
 
 export function ProductsCatalog({ isAdminRoute }: ProductsCatalogProps) {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [catalogItems, setCatalogItems] = useState<CatalogItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       try {
-        setProducts(loadProducts());
+        setCatalogItems(getCatalogItems());
       } catch {
         setIsError(true);
       }
@@ -47,8 +46,11 @@ export function ProductsCatalog({ isAdminRoute }: ProductsCatalogProps) {
 
   return (
     <ul className={classes.productsList}>
-      {products.map((product) => (
-        <ProductCard key={product.id} {...{ isAdminRoute, product }} />
+      {catalogItems.map(({ product, isInCart }) => (
+        <ProductCard
+          key={product.id}
+          {...{ isAdminRoute, product, isInCart }}
+        />
       ))}
     </ul>
   );
