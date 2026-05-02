@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
   --font-raleway: "Raleway", sans-serif;
 
-  --primary-dark: #2D2D2F;
-  --primary-red: #FF0000;
+  --primary-dark: #2d2d2f;
+  --primary-red: #ff0000;
   --primary-body: #727280;
-  --secondary-blue: #F0F4FB;
-  --secondary-white: #FFFFFF;
-  --accent-blue: #2967FF;
+  --secondary-blue: #f0f4fb;
+  --secondary-white: #ffffff;
+  --accent-blue: #2967ff;
 }
 
 * {
@@ -19,7 +19,22 @@
 
 html,
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
   min-height: 100vh;
   font-family: var(--font-raleway);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  background-color: var(--secondary-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 82px;
+  padding-inline: 50px;
+}
+
+a {
+  text-decoration: none;
 }

@@ -1,0 +1,30 @@
+.linksWrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 37px;
+  color: var(--primary-dark);
+}
+
+.ordersLink {
+  color: var(--primary-body);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.cart {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid var(--primary-body);
+  display: grid;
+  place-items: center;
+}
+
+.button {
+  padding-inline: 20px;
+}

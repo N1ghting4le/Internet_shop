@@ -1,9 +1,11 @@
 import { Outlet } from "react-router";
 
+import { Header } from "@/components/Header";
+
 export function PublicLayout() {
   return (
     <>
-      <h2>Публичный</h2>
+      <Header />
       <Outlet />
     </>
   );
