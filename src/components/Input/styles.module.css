@@ -66,6 +66,10 @@
   border: 1px solid var(--primary-red);
 }
 
+.input.password {
+  padding-right: 35px;
+}
+
 .inputWrapper:has(.input:not(:placeholder-shown)) .placeholder {
   display: none;
 }

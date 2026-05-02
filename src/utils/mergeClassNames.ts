@@ -1,2 +1,3 @@
-export const mergeClassNames = (...classNames: (string | undefined | null)[]) =>
-  classNames.filter(Boolean).join(" ");
+export const mergeClassNames = (
+  ...classNames: (string | boolean | undefined | null)[]
+) => classNames.filter(Boolean).join(" ");

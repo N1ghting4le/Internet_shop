@@ -36,8 +36,9 @@ export function Input({
           type={password ? getPasswordInputType(showPassword) : type}
           className={mergeClassNames(
             classes.input,
-            className,
             error && classes.inputError,
+            password && classes.password,
+            className,
           )}
           placeholder=""
         />
