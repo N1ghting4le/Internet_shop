@@ -3,6 +3,7 @@ import { Link } from "react-router";
 
 import { Button } from "@/components/Button";
 import { Loader } from "@/components/Loader";
+import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
 import { addToCart } from "@/utils/addToCart";
 import { deleteProductFromStorage } from "@/utils/deleteProductFromStorage";
 import { mergeClassNames } from "@/utils/mergeClassNames";
@@ -24,6 +25,7 @@ export function ProductCard({
   const [isError, setIsError] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const timeoutRef = useRef<number | null>(null);
+  const { incrementCartAmount } = useCartAmountContext();
 
   useEffect(
     () => () => {
@@ -41,6 +43,7 @@ export function ProductCard({
 
     try {
       addToCart(product);
+      incrementCartAmount();
       setIsInCart(true);
       setIsError(false);
     } catch {

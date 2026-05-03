@@ -10,12 +10,15 @@ import {
   ADMIN_LOGIN_ROUTE,
   ADMIN_PRODUCTS_ROUTE,
 } from "@/constants/routes";
+import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
 import { isAuthorizedAsAdmin } from "@/utils/isAuthorizedAsAdmin";
 
 import classes from "./styles.module.css";
 import type { HeaderProps } from "./types";
 
 export function Header({ isAdminRoute, hideLogin }: HeaderProps) {
+  const { cartAmount } = useCartAmountContext();
+
   const isAuthorized = isAuthorizedAsAdmin();
 
   return (
@@ -31,6 +34,7 @@ export function Header({ isAdminRoute, hideLogin }: HeaderProps) {
       <div className={classes.linksWrapper}>
         <Link to={CART_ROUTE} className={classes.cart}>
           <img src={cart} alt="cart" />
+          <span className={classes.cartAmount}>{cartAmount}</span>
         </Link>
         {isAdminRoute ? (
           <LogoutButton className={classes.button}>Выйти</LogoutButton>

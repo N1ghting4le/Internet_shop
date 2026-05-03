@@ -23,6 +23,21 @@
   border: 1px solid var(--primary-body);
   display: grid;
   place-items: center;
+  position: relative;
+}
+
+.cartAmount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(50%);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-blue);
+  background-color: var(--secondary-white);
+  padding-inline: 5px;
+  padding-bottom: 5px;
+  line-height: 1;
 }
 
 .button {

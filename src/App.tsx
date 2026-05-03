@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router";
 
 import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { CartAmountContextProvider } from "@/contexts/CartAmountContext/provider";
 import { AdminLayout } from "@/layouts/AdminLayout";
 import { PublicLayout } from "@/layouts/PublicLayout";
 import { AdminLoginPage } from "@/pages/AdminLoginPage";
@@ -14,28 +15,30 @@ import { ProductPage } from "@/pages/ProductPage";
 
 export function App() {
   return (
-    <Routes>
-      <Route element={<PublicLayout />}>
-        <Route index element={<CatalogPage />} />
-        <Route path="products/:id" element={<ProductPage />} />
-        <Route path="cart" element={<CartPage />} />
-        <Route path="checkout" element={<CheckoutPage />} />
-        <Route path="orders" element={<OrdersPage />} />
-      </Route>
-      <Route path="admin">
-        <Route path="login" element={<AdminLoginPage />} />
-        <Route
-          path="products"
-          element={
-            <ProtectedRoute>
-              <AdminLayout />
-            </ProtectedRoute>
-          }
-        >
-          <Route index element={<AdminProductsListPage />} />
-          <Route path=":id" element={<AdminProductPage />} />
+    <CartAmountContextProvider>
+      <Routes>
+        <Route element={<PublicLayout />}>
+          <Route index element={<CatalogPage />} />
+          <Route path="products/:id" element={<ProductPage />} />
+          <Route path="cart" element={<CartPage />} />
+          <Route path="checkout" element={<CheckoutPage />} />
+          <Route path="orders" element={<OrdersPage />} />
         </Route>
-      </Route>
-    </Routes>
+        <Route path="admin">
+          <Route path="login" element={<AdminLoginPage />} />
+          <Route
+            path="products"
+            element={
+              <ProtectedRoute>
+                <AdminLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<AdminProductsListPage />} />
+            <Route path=":id" element={<AdminProductPage />} />
+          </Route>
+        </Route>
+      </Routes>
+    </CartAmountContextProvider>
   );
 }
