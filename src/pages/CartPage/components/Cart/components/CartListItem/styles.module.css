@@ -3,6 +3,11 @@
   grid-template-columns: 4fr 4fr 1fr;
   align-items: center;
   padding-block: 20px;
+  border-bottom: 1px solid var(--secondary-menu-blue);
+}
+
+.cartItem:last-of-type {
+  border-bottom: none;
 }
 
 .text {

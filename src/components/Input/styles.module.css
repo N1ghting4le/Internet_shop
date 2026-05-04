@@ -70,6 +70,6 @@
   padding-right: 35px;
 }
 
-.inputWrapper:has(.input:not(:placeholder-shown)) .placeholder {
+.inputWrapper:has(.input:is(:focus, :not(:placeholder-shown))) .placeholder {
   display: none;
 }

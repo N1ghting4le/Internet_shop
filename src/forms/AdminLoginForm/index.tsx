@@ -55,7 +55,6 @@ export function AdminLoginForm() {
   };
 
   return (
-    // eslint-disable-next-line react-hooks/refs
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
       <Input
         label="Логин"
