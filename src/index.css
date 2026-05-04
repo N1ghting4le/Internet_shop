@@ -8,8 +8,10 @@
   --primary-green: #009a00;
   --primary-body: #727280;
   --secondary-blue: #f0f4fb;
+  --secondary-menu-blue: #aec2ea;
   --secondary-white: #ffffff;
   --accent-blue: #2967ff;
+  --accent-pink: #ff2d87;
 }
 
 * {
@@ -23,6 +25,7 @@ body {
   overflow-x: clip;
   min-height: 100vh;
   font-family: var(--font-raleway);
+  scrollbar-gutter: stable;
 }
 
 header {
@@ -43,4 +46,10 @@ a {
 
 li {
   list-style-type: none;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }

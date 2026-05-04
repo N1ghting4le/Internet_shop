@@ -6,3 +6,4 @@ export const ADMIN_PRODUCTS_ROUTE = `${ADMIN_PREFIX}${PRODUCTS_ROUTE}`;
 export const CATALOG_ROUTE = "/";
 export const ORDERS_ROUTE = "/orders";
 export const CART_ROUTE = "/cart";
+export const CHECKOUT_ROUTE = "/checkout";

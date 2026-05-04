@@ -1,0 +1,47 @@
+.cartItem {
+  display: grid;
+  grid-template-columns: 4fr 4fr 1fr;
+  align-items: center;
+  padding-block: 20px;
+}
+
+.text {
+  color: var(--primary-dark);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.price {
+  font-weight: 600;
+}
+
+.amountAndTotalPriceWrapper {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.amount {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  padding-inline: 12px;
+  width: 135px;
+  height: 44px;
+  border-radius: 22px;
+  border: 1px solid var(--secondary-menu-blue);
+}
+
+.button {
+  width: 20px;
+  height: 20px;
+}
+
+.button:disabled {
+  visibility: hidden;
+}
+
+.deleteIcon {
+  justify-self: flex-end;
+}

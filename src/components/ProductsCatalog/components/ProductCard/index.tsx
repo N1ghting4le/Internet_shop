@@ -3,6 +3,7 @@ import { Link } from "react-router";
 
 import { Button } from "@/components/Button";
 import { Loader } from "@/components/Loader";
+import { CURRENCY } from "@/constants/currency";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
 import { addToCart } from "@/utils/addToCart";
 import { deleteProductFromStorage } from "@/utils/deleteProductFromStorage";
@@ -79,7 +80,7 @@ export function ProductCard({
       <p className={mergeClassNames(classes.text, classes.description)}>
         {description}
       </p>
-      <p className={classes.price}>{price} BYN</p>
+      <p className={classes.price}>{price} {CURRENCY}</p>
       <Link to={getProductRoute(id, isAdminRoute)}>
         <Button className={classes.button}>Перейти к товару</Button>
       </Link>
