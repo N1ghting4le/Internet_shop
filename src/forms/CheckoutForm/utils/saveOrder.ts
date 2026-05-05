@@ -1,4 +1,4 @@
-import type { Client } from "../schema";
+import type { ClientInfo } from "../schema";
 
 import { ORDERS_HISTORY_KEY } from "@/constants/localStorageKeys";
 import type { CartItem } from "@/types/cartItem";
@@ -6,7 +6,7 @@ import { loadOrdersHistory } from "@/utils/loadOrdersHistory";
 
 export const saveOrder = (
   cart: CartItem[],
-  client: Client,
+  client: ClientInfo,
   totalPrice: number,
 ) => {
   const ordersHistory = loadOrdersHistory();

@@ -13,7 +13,7 @@ import { calculateTotalCost } from "@/utils/calculateTotalCost";
 import { loadCart } from "@/utils/loadCart";
 import { mergeClassNames } from "@/utils/mergeClassNames";
 
-import { schema, type Client } from "./schema";
+import { schema, type ClientInfo } from "./schema";
 import classes from "./styles.module.css";
 import { clearCart } from "./utils/clearCart";
 import { saveOrder } from "./utils/saveOrder";
@@ -43,7 +43,7 @@ export function CheckoutForm() {
   const cart = loadCart();
   const totalPrice = calculateTotalCost(cart);
 
-  const onSubmit = (values: Client) => {
+  const onSubmit = (values: ClientInfo) => {
     try {
       saveOrder(cart, values, totalPrice);
       clearCart();
