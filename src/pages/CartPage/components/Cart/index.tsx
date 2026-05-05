@@ -7,12 +7,12 @@ import { CHECKOUT_ROUTE } from "@/constants/routes";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
 import { useUpdateEffect } from "@/hooks/useUpdateEffect";
 import { calculateTotalCost } from "@/utils/calculateTotalCost";
+import { deleteItemById } from "@/utils/deleteItemById";
 import { loadCart } from "@/utils/loadCart";
 
 import { CartListItem } from "./components/CartListItem";
 import classes from "./styles.module.css";
 import type { CartProps } from "./types";
-import { deleteItemById } from "./utils/deleteItemById";
 import { updateCart } from "./utils/updateCart";
 import { updateItemAmountById } from "./utils/updateItemAmountById";
 

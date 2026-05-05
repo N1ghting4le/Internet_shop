@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
@@ -9,6 +9,7 @@ import { Input } from "@/components/Input";
 import { CURRENCY } from "@/constants/currency";
 import { ORDERS_ROUTE } from "@/constants/routes";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
+import { useTimeoutRef } from "@/hooks/useTimeoutRef";
 import { calculateTotalCost } from "@/utils/calculateTotalCost";
 import { loadCart } from "@/utils/loadCart";
 import { mergeClassNames } from "@/utils/mergeClassNames";
@@ -21,7 +22,7 @@ import { saveOrder } from "./utils/saveOrder";
 export function CheckoutForm() {
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const timeoutRef = useRef<number | null>(null);
+  const timeoutRef = useTimeoutRef();
 
   const {
     register,
@@ -30,15 +31,6 @@ export function CheckoutForm() {
   } = useForm({ resolver: zodResolver(schema) });
   const { clearCartAmount } = useCartAmountContext();
   const navigate = useNavigate();
-
-  useEffect(
-    () => () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    },
-    [],
-  );
 
   const cart = loadCart();
   const totalPrice = calculateTotalCost(cart);

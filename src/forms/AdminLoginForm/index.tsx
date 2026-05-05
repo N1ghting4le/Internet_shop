@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
@@ -6,11 +6,12 @@ import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Loader } from "@/components/Loader";
 import { ADMIN_LOGIN, ADMIN_PASSWORD } from "@/constants/adminCredentials";
-import { ADMIN_CREDENTIALS_KEY } from "@/constants/localStorageKeys";
 import { ADMIN_PRODUCTS_ROUTE } from "@/constants/routes";
+import { useTimeoutRef } from "@/hooks/useTimeoutRef";
 
 import { INCORRECT_LOGIN, INCORRECT_PASSWORD } from "./constants";
 import type { FormValues } from "./types";
+import { saveAdminCredentials } from "./utils/saveAdminCredentials";
 import { validationOptions } from "./validation";
 import classes from "./styles.module.css";
 
@@ -23,16 +24,7 @@ export function AdminLoginForm() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const timeoutRef = useRef<number | null>(null);
-
-  useEffect(
-    () => () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    },
-    [],
-  );
+  const timeoutRef = useTimeoutRef();
 
   const onSubmit = (values: FormValues) => {
     const { login, password } = values;
@@ -46,7 +38,7 @@ export function AdminLoginForm() {
       } else if (password !== ADMIN_PASSWORD) {
         setError(INCORRECT_PASSWORD);
       } else {
-        localStorage.setItem(ADMIN_CREDENTIALS_KEY, JSON.stringify(values));
+        saveAdminCredentials(values);
         navigate(ADMIN_PRODUCTS_ROUTE);
       }
 

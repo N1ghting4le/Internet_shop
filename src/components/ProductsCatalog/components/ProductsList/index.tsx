@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { getCatalogItems } from "../../utils/getCatalogItems";
 
 import { Loader } from "@/components/Loader";
+import { deleteItemById } from "@/utils/deleteItemById";
 import { mergeClassNames } from "@/utils/mergeClassNames";
 
 import { ProductCard } from "../ProductCard";
@@ -34,9 +35,7 @@ export function ProductsList({
   }, []);
 
   const deleteProductFromCatalog = (id: number) => {
-    setCatalogItems((catalogItems) =>
-      catalogItems.filter(({ product }) => product.id !== id),
-    );
+    setCatalogItems(deleteItemById(id));
   };
 
   if (isLoading) {

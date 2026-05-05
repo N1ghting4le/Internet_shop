@@ -6,6 +6,7 @@ import type { Product } from "@/types/product";
 import { ProductsList } from "./components/ProductsList";
 import classes from "./styles.module.css";
 import type { ProductsCatalogProps, CatalogItem } from "./types";
+import { addProduct } from "./utils/addProduct";
 
 export function ProductsCatalog({ isAdminRoute }: ProductsCatalogProps) {
   const [catalogItems, setCatalogItems] = useState<CatalogItem[]>([]);
@@ -19,7 +20,7 @@ export function ProductsCatalog({ isAdminRoute }: ProductsCatalogProps) {
   }
 
   const addProductToCatalog = (product: Product) => {
-    setCatalogItems((items) => [...items, { product, isInCart: false }]);
+    setCatalogItems(addProduct(product));
   };
 
   return (

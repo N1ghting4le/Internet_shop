@@ -1,10 +1,11 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router";
 
 import { Button } from "@/components/Button";
 import { Loader } from "@/components/Loader";
 import { CURRENCY } from "@/constants/currency";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
+import { useTimeoutRef } from "@/hooks/useTimeoutRef";
 import { addToCart } from "@/utils/addToCart";
 import { deleteProductFromStorage } from "@/utils/deleteProductFromStorage";
 import { mergeClassNames } from "@/utils/mergeClassNames";
@@ -25,17 +26,8 @@ export function ProductCard({
   const [isInCart, setIsInCart] = useState(isInCartInitial);
   const [isError, setIsError] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  const timeoutRef = useRef<number | null>(null);
+  const timeoutRef = useTimeoutRef();
   const { incrementCartAmount } = useCartAmountContext();
-
-  useEffect(
-    () => () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    },
-    [],
-  );
 
   const handleAddToCart = () => {
     if (isInCart) {
