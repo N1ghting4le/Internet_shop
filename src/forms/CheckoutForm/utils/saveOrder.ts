@@ -3,6 +3,7 @@ import type { ClientInfo } from "../schema";
 import { ORDERS_HISTORY_KEY } from "@/constants/localStorageKeys";
 import type { CartItem } from "@/types/cartItem";
 import { loadOrdersHistory } from "@/utils/loadOrdersHistory";
+import { getId } from "@/utils/getId";
 
 export const saveOrder = (
   cart: CartItem[],
@@ -12,6 +13,7 @@ export const saveOrder = (
   const ordersHistory = loadOrdersHistory();
 
   ordersHistory.push({
+    id: getId(ordersHistory),
     cart,
     client,
     totalPrice,

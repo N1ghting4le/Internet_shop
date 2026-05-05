@@ -1,74 +1,31 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-import { Loader } from "@/components/Loader";
-import { mergeClassNames } from "@/utils/mergeClassNames";
+import { ProductForm } from "@/forms/ProductForm";
+import type { Product } from "@/types/product";
 
-import { ProductCard } from "./components/ProductCard";
+import { ProductsList } from "./components/ProductsList";
 import classes from "./styles.module.css";
 import type { ProductsCatalogProps, CatalogItem } from "./types";
-import { getCatalogItems } from "./utils/getCatalogItems";
 
 export function ProductsCatalog({ isAdminRoute }: ProductsCatalogProps) {
   const [catalogItems, setCatalogItems] = useState<CatalogItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      try {
-        setCatalogItems(getCatalogItems());
-      } catch {
-        setIsError(true);
-      }
+  const list = (
+    <ProductsList {...{ catalogItems, setCatalogItems, isAdminRoute }} />
+  );
 
-      setIsLoading(false);
-    }, 1500);
+  if (!isAdminRoute) {
+    return list;
+  }
 
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, []);
-
-  const deleteProductFromCatalog = (id: number) => {
-    setCatalogItems((catalogItems) =>
-      catalogItems.filter(({ product }) => product.id !== id),
-    );
+  const addProductToCatalog = (product: Product) => {
+    setCatalogItems((items) => [...items, { product, isInCart: false }]);
   };
 
-  if (isLoading) {
-    return <Loader size={100} className={classes.loadingAndMessage} />;
-  }
-
-  if (isError) {
-    return (
-      <p
-        className={mergeClassNames(
-          classes.loadingAndMessage,
-          classes.text,
-          classes.error,
-        )}
-      >
-        Ошибка загрузки
-      </p>
-    );
-  }
-
-  if (!catalogItems.length) {
-    return (
-      <p className={mergeClassNames(classes.loadingAndMessage, classes.text)}>
-        Каталог пуст
-      </p>
-    );
-  }
-
   return (
-    <ul className={classes.productsList}>
-      {catalogItems.map(({ product, isInCart }) => (
-        <ProductCard
-          key={product.id}
-          {...{ isAdminRoute, product, isInCart, deleteProductFromCatalog }}
-        />
-      ))}
-    </ul>
+    <div className={classes.wrapper}>
+      <ProductForm onSubmit={addProductToCatalog} />
+      {list}
+    </div>
   );
 }

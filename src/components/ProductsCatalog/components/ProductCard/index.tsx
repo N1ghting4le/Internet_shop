@@ -80,7 +80,9 @@ export function ProductCard({
       <p className={mergeClassNames(classes.text, classes.description)}>
         {description}
       </p>
-      <p className={classes.price}>{price} {CURRENCY}</p>
+      <p className={classes.price}>
+        {price.toFixed(2)} {CURRENCY}
+      </p>
       <Link to={getProductRoute(id, isAdminRoute)}>
         <Button className={classes.button}>Перейти к товару</Button>
       </Link>
