@@ -1,0 +1,10 @@
+.main {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.buttonsWrapper {
+  width: 300px;
+}

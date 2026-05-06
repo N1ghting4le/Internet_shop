@@ -1,0 +1,14 @@
+.loader {
+  display: grid;
+  place-items: center;
+}
+
+.error {
+  color: var(--primary-red);
+  text-align: center;
+  margin-top: 10px;
+}
+
+.wrapper {
+  margin-top: 10px;
+}
