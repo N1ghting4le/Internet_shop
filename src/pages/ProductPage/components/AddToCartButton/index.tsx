@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 import { Button } from "@/components/Button";
-import { CURRENCY } from "@/constants/currency";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
 import { addToCart } from "@/utils/addToCart";
+import { getPriceString } from "@/utils/getPriceString";
 
 import classes from "./styles.module.css";
 import type { AddToCartButtonProps } from "./types";
@@ -43,7 +43,7 @@ export function AddToCartButton({ product }: AddToCartButtonProps) {
       >
         {isInCart
           ? "Товар в корзине"
-          : `В корзину за ${product.price.toFixed(2)} ${CURRENCY}`}
+          : `В корзину за ${getPriceString(product.price)}`}
       </Button>
       {isError && <p className={classes.error}>Произошла ошибка</p>}
     </div>

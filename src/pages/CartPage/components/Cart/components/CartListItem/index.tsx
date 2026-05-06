@@ -3,7 +3,7 @@ import classes from "./styles.module.css";
 import deleteIcon from "@/assets/delete.svg";
 import minusIcon from "@/assets/Minus.svg";
 import plusIcon from "@/assets/Plus.svg";
-import { CURRENCY } from "@/constants/currency";
+import { getPriceString } from "@/utils/getPriceString";
 import { mergeClassNames } from "@/utils/mergeClassNames";
 
 import type { CartListItemProps } from "./types";
@@ -22,7 +22,7 @@ export function CartListItem({
       <div>
         <p className={classes.text}>{title}</p>
         <p className={mergeClassNames(classes.text, classes.price)}>
-          {price} {CURRENCY}
+          {getPriceString(price)}
         </p>
       </div>
       <div className={classes.amountAndTotalPriceWrapper}>
@@ -40,7 +40,7 @@ export function CartListItem({
           </button>
         </div>
         <p className={mergeClassNames(classes.text, classes.price)}>
-          {(price * amount).toFixed(2)} {CURRENCY}
+          {getPriceString(price * amount)}
         </p>
       </div>
       <button

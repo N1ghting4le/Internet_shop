@@ -1,3 +1,4 @@
+import { DIGITS_AFTER_DECIMAL_POINT } from "@/constants/digitsAfterDecimalPoint";
 import type { CartItem } from "@/types/cartItem";
 
 export const calculateTotalCost = (cart: CartItem[]) =>
@@ -8,5 +9,5 @@ export const calculateTotalCost = (cart: CartItem[]) =>
           totalCost + price * amount,
         0,
       )
-      .toFixed(2),
+      .toFixed(DIGITS_AFTER_DECIMAL_POINT),
   );

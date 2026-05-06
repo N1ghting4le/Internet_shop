@@ -1,6 +1,6 @@
 import { PLACEHOLDER_SRC } from "../ProductsCatalog/components/ProductCard/constants";
 
-import { CURRENCY } from "@/constants/currency";
+import { getPriceString } from "@/utils/getPriceString";
 
 import classes from "./styles.module.css";
 import type { ProductInfoProps } from "./types";
@@ -21,7 +21,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
         className={classes.image}
       />
       <p className={classes.titleOrPrice}>
-        {price.toFixed(2)} {CURRENCY}
+        {getPriceString(price)}
       </p>
       <p className={classes.description}>{description}</p>
     </div>

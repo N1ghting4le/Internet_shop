@@ -3,11 +3,11 @@ import { Link } from "react-router";
 
 import { Button } from "@/components/Button";
 import { Loader } from "@/components/Loader";
-import { CURRENCY } from "@/constants/currency";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
 import { useTimeoutRef } from "@/hooks/useTimeoutRef";
 import { addToCart } from "@/utils/addToCart";
 import { deleteProductFromStorage } from "@/utils/deleteProductFromStorage";
+import { getPriceString } from "@/utils/getPriceString";
 import { mergeClassNames } from "@/utils/mergeClassNames";
 
 import { PLACEHOLDER_SRC } from "./constants";
@@ -73,7 +73,7 @@ export function ProductCard({
         {description}
       </p>
       <p className={classes.price}>
-        {price.toFixed(2)} {CURRENCY}
+        {getPriceString(price)}
       </p>
       <Link to={getProductRoute(id, isAdminRoute)}>
         <Button className={classes.button}>Перейти к товару</Button>
