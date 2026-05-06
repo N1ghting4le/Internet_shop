@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  color: var(--primary-dark);
+  max-width: 600px;
+}
+
+.titleOrPrice {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.image {
+  width: 100%;
+}

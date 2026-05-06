@@ -1,0 +1,15 @@
+.wrapper {
+  width: 300px;
+}
+
+.error {
+  color: var(--primary-red);
+  margin-top: 10px;
+  text-align: center;
+}
+
+.inCart {
+  background-color: transparent;
+  border: 1px solid var(--primary-green);
+  color: var(--primary-green);
+}
