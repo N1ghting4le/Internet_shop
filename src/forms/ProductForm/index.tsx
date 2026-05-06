@@ -59,16 +59,19 @@ export function ProductForm({
         label="Название"
         error={errors.title?.message}
         {...register("title")}
+        id="title"
       />
       <Input
         label="Описание"
         error={errors.description?.message}
         {...register("description")}
+        id="description"
       />
       <Input
         label="Цена"
         error={errors.price?.message}
         {...register("price")}
+        id="price"
       />
       <Button type="submit" className={classes.button}>
         {product ? "Сохранить" : "Добавить товар"}

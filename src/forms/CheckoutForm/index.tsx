@@ -55,6 +55,7 @@ export function CheckoutForm() {
     <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
       <Input
         {...register("address")}
+        id="address"
         label="Куда доставить?"
         placeholder={
           <span className={classes.placeholder}>
@@ -66,11 +67,13 @@ export function CheckoutForm() {
       />
       <Input
         {...register("clientName")}
+        id="clientName"
         label="Имя"
         error={errors.clientName?.message}
       />
       <Input
         {...register("phoneNumber")}
+        id="phoneNumber"
         label="Телефон"
         error={errors.phoneNumber?.message}
       />
