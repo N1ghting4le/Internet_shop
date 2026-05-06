@@ -12,11 +12,12 @@ export const saveOrder = (
 ) => {
   const ordersHistory = loadOrdersHistory();
 
-  ordersHistory.push({
+  ordersHistory.unshift({
     id: getId(ordersHistory),
     cart,
     client,
     totalPrice,
+    date: new Date(),
   });
 
   localStorage.setItem(ORDERS_HISTORY_KEY, JSON.stringify(ordersHistory));

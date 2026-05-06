@@ -6,4 +6,5 @@ export interface Order {
   cart: CartItem[];
   client: ClientInfo;
   totalPrice: number;
+  date: Date;
 }
