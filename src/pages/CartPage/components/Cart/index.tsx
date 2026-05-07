@@ -2,15 +2,16 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router";
 
 import { Button } from "@/components/Button";
-import { CURRENCY } from "@/constants/currency";
 import { CHECKOUT_ROUTE } from "@/constants/routes";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
 import { useUpdateEffect } from "@/hooks/useUpdateEffect";
 import { calculateTotalCost } from "@/utils/calculateTotalCost";
 import { deleteItemById } from "@/utils/deleteItemById";
+import { getPriceString } from "@/utils/getPriceString";
 import { loadCart } from "@/utils/loadCart";
 
 import { CartListItem } from "./components/CartListItem";
+import { CHECKOUT_TEXT } from "./constants";
 import classes from "./styles.module.css";
 import type { CartProps } from "./types";
 import { updateCart } from "./utils/updateCart";
@@ -64,11 +65,11 @@ export function Cart({ cartItems, setCartItems }: CartProps) {
         <div className={classes.totalCostWrapper}>
           <p className={classes.costLabel}>Стоимость корзины:</p>
           <p className={classes.totalCost}>
-            {calculateTotalCost(cartItems)} {CURRENCY}
+            {getPriceString(calculateTotalCost(cartItems))}
           </p>
         </div>
         <Link to={CHECKOUT_ROUTE}>
-          <Button className={classes.button}>Оформить</Button>
+          <Button className={classes.button}>{CHECKOUT_TEXT}</Button>
         </Link>
       </div>
       <ul className={classes.list}>

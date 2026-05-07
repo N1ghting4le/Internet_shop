@@ -9,11 +9,17 @@ import { createProduct } from "@/utils/createProduct";
 import { mergeClassNames } from "@/utils/mergeClassNames";
 import { updateProduct } from "@/utils/updateProduct";
 
-import { EMPTY_VALUES } from "./constants";
+import {
+  EMPTY_VALUES,
+  UPDATE_PRODUCT_TEXT,
+  ADD_PRODUCT_TEXT,
+  ERROR_TEXT,
+} from "./constants";
 import classes from "./styles.module.css";
 import { schema, type ProductInfo } from "./schema";
 import type { ProductFormProps } from "./types";
 import { getDefaultValues } from "./utils/getDefaultValues";
+import { getSuccessText } from "./utils/getSuccessText";
 
 export function ProductForm({
   product,
@@ -74,16 +80,16 @@ export function ProductForm({
         id="price"
       />
       <Button type="submit" className={classes.button}>
-        {product ? "Сохранить" : "Добавить товар"}
+        {product ? UPDATE_PRODUCT_TEXT : ADD_PRODUCT_TEXT}
       </Button>
       {isSuccess && (
         <p className={mergeClassNames(classes.message, classes.success)}>
-          Товар успешно {product ? "сохранен" : "добавлен"}
+          {getSuccessText(!!product)}
         </p>
       )}
       {isError && (
         <p className={mergeClassNames(classes.message, classes.error)}>
-          Произошла ошибка
+          {ERROR_TEXT}
         </p>
       )}
     </form>

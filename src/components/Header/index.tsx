@@ -13,6 +13,13 @@ import {
 import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
 import { isAuthorizedAsAdmin } from "@/utils/isAuthorizedAsAdmin";
 
+import {
+  LOGO_TEXT,
+  ORDERS_HISTORY_TEXT,
+  LOGOUT_TEXT,
+  LOGIN_TEXT,
+  ADMIN_PANEL_TEXT,
+} from "./constants";
 import classes from "./styles.module.css";
 import type { HeaderProps } from "./types";
 
@@ -25,10 +32,10 @@ export function Header({ isAdminRoute, hideLogin }: HeaderProps) {
     <header className={classes.header}>
       <div className={classes.linksWrapper}>
         <Link to={CATALOG_ROUTE} className={classes.logo}>
-          React
+          {LOGO_TEXT}
         </Link>
         <Link to={ORDERS_ROUTE} className={classes.ordersLink}>
-          История заказов
+          {ORDERS_HISTORY_TEXT}
         </Link>
       </div>
       <div className={classes.linksWrapper}>
@@ -37,12 +44,12 @@ export function Header({ isAdminRoute, hideLogin }: HeaderProps) {
           <span className={classes.cartAmount}>{cartAmount}</span>
         </Link>
         {isAdminRoute ? (
-          <LogoutButton className={classes.button}>Выйти</LogoutButton>
+          <LogoutButton className={classes.button}>{LOGOUT_TEXT}</LogoutButton>
         ) : (
           !hideLogin && (
             <Link to={isAuthorized ? ADMIN_PRODUCTS_ROUTE : ADMIN_LOGIN_ROUTE}>
               <Button className={classes.button}>
-                {isAuthorized ? "Админ-панель" : "Войти"}
+                {isAuthorized ? ADMIN_PANEL_TEXT : LOGIN_TEXT}
               </Button>
             </Link>
           )

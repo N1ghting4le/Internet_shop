@@ -10,7 +10,7 @@ import { deleteProductFromStorage } from "@/utils/deleteProductFromStorage";
 import { getPriceString } from "@/utils/getPriceString";
 import { mergeClassNames } from "@/utils/mergeClassNames";
 
-import { PLACEHOLDER_SRC } from "./constants";
+import { PLACEHOLDER_SRC, GO_TO_PRODUCT_TEXT, ERROR_TEXT } from "./constants";
 import classes from "./styles.module.css";
 import type { ProductCardProps } from "./types";
 import { getProductRoute } from "./utils/getProductRoute";
@@ -72,11 +72,9 @@ export function ProductCard({
       <p className={mergeClassNames(classes.text, classes.description)}>
         {description}
       </p>
-      <p className={classes.price}>
-        {getPriceString(price)}
-      </p>
+      <p className={classes.price}>{getPriceString(price)}</p>
       <Link to={getProductRoute(id, isAdminRoute)}>
-        <Button className={classes.button}>Перейти к товару</Button>
+        <Button className={classes.button}>{GO_TO_PRODUCT_TEXT}</Button>
       </Link>
       {isDeleting ? (
         <Loader size={40} className={classes.loader} />
@@ -91,7 +89,7 @@ export function ProductCard({
           {getTextForSecondButton(isInCart, isAdminRoute)}
         </Button>
       )}
-      {isError && <p className={classes.error}>Произошла ошибка</p>}
+      {isError && <p className={classes.error}>{ERROR_TEXT}</p>}
     </li>
   );
 }

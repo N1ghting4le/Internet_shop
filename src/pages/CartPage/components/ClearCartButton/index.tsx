@@ -1,5 +1,6 @@
 import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
 
+import { CLEAR_CART_TEXT } from "./constants";
 import classes from "./styles.module.css";
 import type { ClearCartButtonProps } from "./types";
 
@@ -13,7 +14,7 @@ export function ClearCartButton({ setCartItems }: ClearCartButtonProps) {
 
   return (
     <button className={classes.button} onClick={handleClick}>
-      Очистить корзину
+      {CLEAR_CART_TEXT}
     </button>
   );
 }

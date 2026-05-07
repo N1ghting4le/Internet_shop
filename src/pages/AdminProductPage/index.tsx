@@ -9,6 +9,7 @@ import { useTimeoutRef } from "@/hooks/useTimeoutRef";
 import { loadProductById } from "@/utils/loadProductById";
 
 import { DeleteButton } from "./components/DeleteButton";
+import { EDIT_TEXT } from "./constants";
 import classes from "./styles.module.css";
 
 export function AdminProductPage() {
@@ -44,7 +45,7 @@ export function AdminProductPage() {
       {product && !isEditView && (
         <div className={classes.buttonsWrapper}>
           <Button onClick={enterEditView} disabled={isDeleting}>
-            Редактировать
+            {EDIT_TEXT}
           </Button>
           <DeleteButton {...{ isDeleting, setIsDeleting }} id={product.id} />
         </div>

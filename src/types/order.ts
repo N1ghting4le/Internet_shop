@@ -8,3 +8,7 @@ export interface Order {
   totalPrice: number;
   date: Date;
 }
+
+export interface LoadedOrder extends Omit<Order, "date"> {
+  date: string;
+}

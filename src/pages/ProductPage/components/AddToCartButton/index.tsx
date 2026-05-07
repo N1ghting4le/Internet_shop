@@ -3,10 +3,11 @@ import { useState } from "react";
 import { Button } from "@/components/Button";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
 import { addToCart } from "@/utils/addToCart";
-import { getPriceString } from "@/utils/getPriceString";
 
+import { PRODUCT_IN_CART_TEXT, ERROR_TEXT } from "./constants";
 import classes from "./styles.module.css";
 import type { AddToCartButtonProps } from "./types";
+import { getAddToCartButtonText } from "./utils/getAddToCartButtonText";
 import { isProductInCart } from "./utils/isProductInCart";
 
 export function AddToCartButton({ product }: AddToCartButtonProps) {
@@ -42,10 +43,10 @@ export function AddToCartButton({ product }: AddToCartButtonProps) {
         className={isInCart ? classes.inCart : undefined}
       >
         {isInCart
-          ? "Товар в корзине"
-          : `В корзину за ${getPriceString(product.price)}`}
+          ? PRODUCT_IN_CART_TEXT
+          : getAddToCartButtonText(product.price)}
       </Button>
-      {isError && <p className={classes.error}>Произошла ошибка</p>}
+      {isError && <p className={classes.error}>{ERROR_TEXT}</p>}
     </div>
   );
 }

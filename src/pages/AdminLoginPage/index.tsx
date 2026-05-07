@@ -5,6 +5,7 @@ import { ADMIN_PRODUCTS_ROUTE } from "@/constants/routes";
 import { AdminLoginForm } from "@/forms/AdminLoginForm";
 import { isAuthorizedAsAdmin } from "@/utils/isAuthorizedAsAdmin";
 
+import { LOGIN_TEXT } from "./constants";
 import classes from "./styles.module.css";
 
 export function AdminLoginPage() {
@@ -16,7 +17,7 @@ export function AdminLoginPage() {
     <>
       <Header hideLogin />
       <main className={classes.main}>
-        <h1 className={classes.title}>Вход в аккаунт администратора</h1>
+        <h1 className={classes.title}>{LOGIN_TEXT}</h1>
         <AdminLoginForm />
       </main>
     </>

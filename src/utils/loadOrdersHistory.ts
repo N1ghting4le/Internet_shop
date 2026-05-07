@@ -1,7 +1,7 @@
 import { ORDERS_HISTORY_KEY } from "@/constants/localStorageKeys";
-import type { Order } from "@/types/order";
+import type { LoadedOrder } from "@/types/order";
 
-export const loadOrdersHistory = (): Order[] => {
+export const loadOrdersHistory = (): LoadedOrder[] => {
   const ordersHistoryRaw = localStorage.getItem(ORDERS_HISTORY_KEY);
 
   if (!ordersHistoryRaw) {

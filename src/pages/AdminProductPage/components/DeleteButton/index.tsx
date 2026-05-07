@@ -7,6 +7,7 @@ import { ADMIN_PRODUCTS_ROUTE } from "@/constants/routes";
 import { useTimeoutRef } from "@/hooks/useTimeoutRef";
 import { deleteProductFromStorage } from "@/utils/deleteProductFromStorage";
 
+import { DELETE_TEXT, ERROR_TEXT } from "./constants";
 import classes from "./styles.module.css";
 import type { DeleteButtonProps } from "./types";
 
@@ -39,9 +40,9 @@ export function DeleteButton({
       {isDeleting ? (
         <Loader size={50} className={classes.loader} />
       ) : (
-        <Button onClick={handleDelete}>Удалить</Button>
+        <Button onClick={handleDelete}>{DELETE_TEXT}</Button>
       )}
-      {isError && <p className={classes.error}>Произошла ошибка</p>}
+      {isError && <p className={classes.error}>{ERROR_TEXT}</p>}
     </div>
   );
 }

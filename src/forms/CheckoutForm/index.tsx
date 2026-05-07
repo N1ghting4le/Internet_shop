@@ -6,14 +6,21 @@ import { useNavigate } from "react-router";
 import navigationIcon from "@/assets/navigation.svg";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
-import { CURRENCY } from "@/constants/currency";
 import { ORDERS_ROUTE } from "@/constants/routes";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
 import { useTimeoutRef } from "@/hooks/useTimeoutRef";
 import { calculateTotalCost } from "@/utils/calculateTotalCost";
+import { getPriceString } from "@/utils/getPriceString";
 import { loadCart } from "@/utils/loadCart";
 import { mergeClassNames } from "@/utils/mergeClassNames";
 
+import {
+  ENTER_DELIVERY_ADDRESS_TEXT,
+  CREATE_ORDER_TEXT,
+  ORDER_CREATION_SUCCESS_TEXT,
+  ERROR_TEXT,
+  TOTAL_TEXT,
+} from "./constants";
 import { schema, type ClientInfo } from "./schema";
 import classes from "./styles.module.css";
 import { clearCart } from "./utils/clearCart";
@@ -59,8 +66,8 @@ export function CheckoutForm() {
         label="Куда доставить?"
         placeholder={
           <span className={classes.placeholder}>
-            <img src={navigationIcon} alt="Navigation" /> Выберите адрес
-            доставки
+            <img src={navigationIcon} alt="Navigation" />{" "}
+            {ENTER_DELIVERY_ADDRESS_TEXT}
           </span>
         }
         error={errors.address?.message}
@@ -79,17 +86,19 @@ export function CheckoutForm() {
       />
       <div>
         <div className={classes.totalPriceWrapper}>
-          <p className={classes.text}>Итого:</p>
+          <p className={classes.text}>{TOTAL_TEXT}</p>
           <p className={mergeClassNames(classes.text, classes.price)}>
-            {totalPrice} {CURRENCY}
+            {getPriceString(totalPrice)}
           </p>
         </div>
         <Button type="submit" disabled={isSuccess}>
-          Сделать заказ
+          {CREATE_ORDER_TEXT}
         </Button>
       </div>
-      {isSuccess && <p className={classes.success}>Заказ успешно оформлен</p>}
-      {isError && <p className={classes.error}>Произошла ошибка</p>}
+      {isSuccess && (
+        <p className={classes.success}>{ORDER_CREATION_SUCCESS_TEXT}</p>
+      )}
+      {isError && <p className={classes.error}>{ERROR_TEXT}</p>}
     </form>
   );
 }

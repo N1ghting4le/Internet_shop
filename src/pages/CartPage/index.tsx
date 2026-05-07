@@ -4,6 +4,7 @@ import type { CartItem } from "@/types/cartItem";
 
 import { Cart } from "./components/Cart";
 import { ClearCartButton } from "./components/ClearCartButton";
+import { CART_TEXT } from "./constants";
 import classes from "./styles.module.css";
 
 export function CartPage() {
@@ -12,7 +13,7 @@ export function CartPage() {
   return (
     <main className={classes.main}>
       <div className={classes.titleAndClearButtonWrapper}>
-        <h1 className={classes.title}>Корзина</h1>
+        <h1 className={classes.title}>{CART_TEXT}</h1>
         {!!cartItems.length && <ClearCartButton {...{ setCartItems }} />}
       </div>
       <Cart {...{ cartItems, setCartItems }} />

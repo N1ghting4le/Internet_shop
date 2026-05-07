@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 
 import { getCatalogItems } from "../../utils/getCatalogItems";
+import { ProductCard } from "../ProductCard";
 
 import { Loader } from "@/components/Loader";
 import { deleteItemById } from "@/utils/deleteItemById";
 import { mergeClassNames } from "@/utils/mergeClassNames";
 
-import { ProductCard } from "../ProductCard";
+import { LOADING_ERROR_TEXT, EMPTY_CATALOG_TEXT } from "./constants";
 import classes from "./styles.module.css";
 import type { ProductsListProps } from "./types";
 
@@ -51,7 +52,7 @@ export function ProductsList({
           classes.error,
         )}
       >
-        Ошибка загрузки
+        {LOADING_ERROR_TEXT}
       </p>
     );
   }
@@ -59,7 +60,7 @@ export function ProductsList({
   if (!catalogItems.length) {
     return (
       <p className={mergeClassNames(classes.loadingAndMessage, classes.text)}>
-        Каталог пуст
+        {EMPTY_CATALOG_TEXT}
       </p>
     );
   }

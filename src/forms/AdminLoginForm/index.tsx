@@ -9,7 +9,7 @@ import { ADMIN_LOGIN, ADMIN_PASSWORD } from "@/constants/adminCredentials";
 import { ADMIN_PRODUCTS_ROUTE } from "@/constants/routes";
 import { useTimeoutRef } from "@/hooks/useTimeoutRef";
 
-import { INCORRECT_LOGIN, INCORRECT_PASSWORD } from "./constants";
+import { INCORRECT_LOGIN, INCORRECT_PASSWORD, LOGIN_TEXT } from "./constants";
 import type { FormValues } from "./types";
 import { saveAdminCredentials } from "./utils/saveAdminCredentials";
 import { validationOptions } from "./validation";
@@ -66,7 +66,7 @@ export function AdminLoginForm() {
           <Loader size={40} />
         ) : (
           <Button type="submit" className={classes.button}>
-            Войти
+            {LOGIN_TEXT}
           </Button>
         )}
         {error && <p className={classes.error}>{error}</p>}

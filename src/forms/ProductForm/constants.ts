@@ -5,3 +5,7 @@ export const EMPTY_VALUES: ProductFormInput = {
   description: "",
   price: "",
 };
+
+export const UPDATE_PRODUCT_TEXT = "Сохранить изменения";
+export const ADD_PRODUCT_TEXT = "Добавить товар";
+export const ERROR_TEXT = "Произошла ошибка";
