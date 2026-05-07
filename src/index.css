@@ -41,3 +41,7 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
+
+.error {
+	color: var(--primary-red);
+}
