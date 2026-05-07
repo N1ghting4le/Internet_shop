@@ -7,4 +7,11 @@
 
 .title {
   font-family: var(--font-raleway);
+  text-align: center;
+}
+
+@media (max-width: 460px) {
+  .main {
+    padding: 20px;
+  }
 }

@@ -1,3 +1,16 @@
+.header {
+  position: sticky;
+  top: 0;
+  background-color: var(--secondary-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  height: 82px;
+  padding-inline: 50px;
+  z-index: 1;
+}
+
 .linksWrapper {
   display: flex;
   align-items: center;
@@ -42,4 +55,25 @@
 
 .button {
   padding-inline: 20px;
+}
+
+@media (max-width: 460px) {
+  .header {
+    padding-inline: 20px;
+  }
+
+  .logo {
+    font-size: 30px;
+  }
+
+  .cart {
+    width: 40px;
+    height: 40px;
+  }
+
+  .button {
+    padding-inline: 10px;
+    height: 40px;
+    font-size: 14px;
+  }
 }

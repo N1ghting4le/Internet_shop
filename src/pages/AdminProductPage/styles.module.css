@@ -8,3 +8,9 @@
 .buttonsWrapper {
   width: 300px;
 }
+
+@media (max-width: 460px) {
+  .main {
+    padding: 20px;
+  }
+}

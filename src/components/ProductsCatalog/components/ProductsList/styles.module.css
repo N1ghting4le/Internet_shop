@@ -18,3 +18,9 @@
   gap: 50px;
   flex-wrap: wrap;
 }
+
+@media (max-width: 460px) {
+  .productsList {
+    margin-top: 20px;
+  }
+}

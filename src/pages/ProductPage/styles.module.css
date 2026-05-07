@@ -4,3 +4,9 @@
   flex-direction: column;
   gap: 30px;
 }
+
+@media (max-width: 460px) {
+  .main {
+    padding: 20px;
+  }
+}

@@ -22,7 +22,7 @@ export function Header({ isAdminRoute, hideLogin }: HeaderProps) {
   const isAuthorized = isAuthorizedAsAdmin();
 
   return (
-    <header>
+    <header className={classes.header}>
       <div className={classes.linksWrapper}>
         <Link to={CATALOG_ROUTE} className={classes.logo}>
           React

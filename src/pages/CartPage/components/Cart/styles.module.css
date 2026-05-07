@@ -16,6 +16,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
   padding: 25px 58px;
   border: 1px solid var(--secondary-menu-blue);
   border-radius: 20px;
@@ -44,4 +46,14 @@
 
 .list {
   padding: 40px 58px;
+}
+
+@media (max-width: 768px) {
+  .cartHeader, .list {
+    padding-inline: 20px;
+  }
+
+  .list {
+    padding-block: 0;
+  }
 }

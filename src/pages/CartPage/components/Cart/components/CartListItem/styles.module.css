@@ -1,6 +1,7 @@
 .cartItem {
   display: grid;
-  grid-template-columns: 4fr 4fr 1fr;
+  grid-template-columns: minmax(200px, 1fr) 1.2fr auto;
+  gap: 20px;
   align-items: center;
   padding-block: 20px;
   border-bottom: 1px solid var(--secondary-menu-blue);
@@ -49,4 +50,14 @@
 
 .deleteIcon {
   justify-self: flex-end;
+}
+
+@media (max-width: 620px) {
+  .cartItem {
+    grid-template-columns: 1fr;
+  }
+
+  .deleteIcon {
+    justify-self: unset;
+  }
 }

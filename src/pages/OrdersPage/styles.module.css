@@ -12,7 +12,7 @@
 
 .ordersListItem {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr minmax(200px, 2fr) 1fr;
   gap: 30px;
   padding-block: 20px;
   border-bottom: 1px solid var(--secondary-menu-blue);
@@ -35,4 +35,30 @@
 .dateAndPrice {
   font-size: 20px;
   font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .ordersList {
+    padding-inline: 20px;
+  }
+}
+
+@media (max-width: 620px) {
+  .ordersListItem {
+    grid-template-columns: 1fr;
+  }
+
+  .productsList {
+    padding-left: 20px;
+  }
+}
+
+@media (max-width: 460px) {
+  .main {
+    padding: 20px;
+  }
+
+  .ordersList {
+    margin-top: 20px;
+  }
 }

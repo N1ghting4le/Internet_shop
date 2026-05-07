@@ -28,18 +28,6 @@ body {
   scrollbar-gutter: stable;
 }
 
-header {
-  position: sticky;
-  top: 0;
-  background-color: var(--secondary-white);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 82px;
-  padding-inline: 50px;
-  z-index: 1;
-}
-
 a {
   text-decoration: none;
 }
