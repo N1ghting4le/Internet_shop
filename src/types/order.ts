@@ -6,9 +6,5 @@ export interface Order {
   cart: CartItem[];
   client: ClientInfo;
   totalPrice: number;
-  date: Date;
-}
-
-export interface LoadedOrder extends Omit<Order, "date"> {
   date: string;
 }

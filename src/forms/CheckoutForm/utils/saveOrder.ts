@@ -17,7 +17,7 @@ export const saveOrder = (
     cart,
     client,
     totalPrice,
-    date: new Date(),
+    date: new Date().toJSON(),
   });
 
   localStorage.setItem(ORDERS_HISTORY_KEY, JSON.stringify(ordersHistory));
