@@ -2,19 +2,18 @@ import { useParams } from "react-router";
 
 import { BackToProductsButton } from "@/components/BackToProductsButton";
 import { ProductInfo } from "@/components/ProductInfo";
-import { loadProductById } from "@/utils/loadProductById";
+import { useProduct } from "@/hooks/useProduct";
 
 import { AddToCartButton } from "./components/AddToCartButton";
 import classes from "./styles.module.css";
 
 export function ProductPage() {
   const { id } = useParams();
+  const product = useProduct(id);
 
   if (!id) {
     return null;
   }
-
-  const product = loadProductById(id);
 
   return (
     <main className={classes.main}>

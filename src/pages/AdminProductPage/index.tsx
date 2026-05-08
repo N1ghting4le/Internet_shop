@@ -5,7 +5,7 @@ import { BackToProductsButton } from "@/components/BackToProductsButton";
 import { Button } from "@/components/Button";
 import { ProductInfo } from "@/components/ProductInfo";
 import { ProductForm } from "@/forms/ProductForm";
-import { loadProductById } from "@/utils/loadProductById";
+import { useProduct } from "@/hooks/useProduct";
 import { wait } from "@/utils/wait";
 
 import { DeleteButton } from "./components/DeleteButton";
@@ -16,12 +16,11 @@ export function AdminProductPage() {
   const { id } = useParams();
   const [isDeleting, setIsDeleting] = useState(false);
   const [isEditView, setIsEditView] = useState(false);
+  const product = useProduct(id);
 
   if (!id) {
     return null;
   }
-
-  const product = loadProductById(id);
 
   const enterEditView = () => {
     setIsEditView(true);
