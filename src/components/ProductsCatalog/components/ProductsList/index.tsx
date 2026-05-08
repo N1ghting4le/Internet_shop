@@ -1,14 +1,10 @@
-import { useState, useEffect } from "react";
-
-import { getCatalogItems } from "../../utils/getCatalogItems";
 import { ProductCard } from "../ProductCard";
 
 import { Loader } from "@/components/Loader";
 import { deleteItemById } from "@/utils/deleteItemById";
 import { mergeClassNames } from "@/utils/mergeClassNames";
-import { wait } from "@/utils/wait";
 
-import { LOADING_ERROR_TEXT, EMPTY_CATALOG_TEXT } from "./constants";
+import { EMPTY_CATALOG_TEXT } from "./constants";
 import classes from "./styles.module.css";
 import type { ProductsListProps } from "./types";
 
@@ -16,22 +12,9 @@ export function ProductsList({
   isAdminRoute,
   catalogItems,
   setCatalogItems,
+  isLoading,
+  isError,
 }: ProductsListProps) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    wait(1500).then(() => {
-      try {
-        setCatalogItems(getCatalogItems());
-      } catch {
-        setIsError(true);
-      }
-
-      setIsLoading(false);
-    });
-  }, []);
-
   const deleteProductFromCatalog = (id: number) => {
     setCatalogItems(deleteItemById(id));
   };
@@ -41,17 +24,7 @@ export function ProductsList({
   }
 
   if (isError) {
-    return (
-      <p
-        className={mergeClassNames(
-          classes.loadingAndMessage,
-          classes.text,
-          classes.error,
-        )}
-      >
-        {LOADING_ERROR_TEXT}
-      </p>
-    );
+    return null;
   }
 
   if (!catalogItems.length) {
