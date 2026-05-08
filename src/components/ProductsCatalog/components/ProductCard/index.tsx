@@ -4,11 +4,11 @@ import { Link } from "react-router";
 import { Button } from "@/components/Button";
 import { Loader } from "@/components/Loader";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
-import { useTimeoutRef } from "@/hooks/useTimeoutRef";
 import { addToCart } from "@/utils/addToCart";
 import { deleteProductFromStorage } from "@/utils/deleteProductFromStorage";
 import { getPriceString } from "@/utils/getPriceString";
 import { mergeClassNames } from "@/utils/mergeClassNames";
+import { wait } from "@/utils/wait";
 
 import { PLACEHOLDER_SRC, GO_TO_PRODUCT_TEXT, ERROR_TEXT } from "./constants";
 import classes from "./styles.module.css";
@@ -26,7 +26,6 @@ export function ProductCard({
   const [isInCart, setIsInCart] = useState(isInCartInitial);
   const [isError, setIsError] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  const timeoutRef = useTimeoutRef();
   const { incrementCartAmount } = useCartAmountContext();
 
   const handleAddToCart = () => {
@@ -46,19 +45,19 @@ export function ProductCard({
 
   const { id, title, description, price } = product;
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     setIsDeleting(true);
 
-    timeoutRef.current = setTimeout(() => {
-      try {
-        deleteProductFromStorage(id);
-        deleteProductFromCatalog(id);
-      } catch {
-        setIsError(true);
-      }
+    await wait(1000);
 
-      setIsDeleting(false);
-    }, 1000);
+    try {
+      deleteProductFromStorage(id);
+      deleteProductFromCatalog(id);
+    } catch {
+      setIsError(true);
+    }
+
+    setIsDeleting(false);
   };
 
   return (

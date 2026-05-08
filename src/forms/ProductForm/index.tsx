@@ -4,10 +4,10 @@ import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
-import { useTimeoutRef } from "@/hooks/useTimeoutRef";
 import { createProduct } from "@/utils/createProduct";
 import { mergeClassNames } from "@/utils/mergeClassNames";
 import { updateProduct } from "@/utils/updateProduct";
+import { wait } from "@/utils/wait";
 
 import {
   EMPTY_VALUES,
@@ -27,7 +27,6 @@ export function ProductForm({
 }: ProductFormProps) {
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const timeoutRef = useTimeoutRef();
 
   const {
     register,
@@ -39,7 +38,7 @@ export function ProductForm({
     defaultValues: getDefaultValues(product),
   });
 
-  const onSubmit = (values: ProductInfo) => {
+  const onSubmit = async (values: ProductInfo) => {
     try {
       if (product) {
         externalOnSubmit(updateProduct(product.id, values));
@@ -51,9 +50,9 @@ export function ProductForm({
       setIsError(false);
       reset(EMPTY_VALUES);
 
-      timeoutRef.current = setTimeout(() => {
-        setIsSuccess(false);
-      }, 1000);
+      await wait(1000);
+
+      setIsSuccess(false);
     } catch {
       setIsError(true);
     }

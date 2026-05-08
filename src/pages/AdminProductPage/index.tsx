@@ -5,8 +5,8 @@ import { BackToProductsButton } from "@/components/BackToProductsButton";
 import { Button } from "@/components/Button";
 import { ProductInfo } from "@/components/ProductInfo";
 import { ProductForm } from "@/forms/ProductForm";
-import { useTimeoutRef } from "@/hooks/useTimeoutRef";
 import { loadProductById } from "@/utils/loadProductById";
+import { wait } from "@/utils/wait";
 
 import { DeleteButton } from "./components/DeleteButton";
 import { EDIT_TEXT } from "./constants";
@@ -16,7 +16,6 @@ export function AdminProductPage() {
   const { id } = useParams();
   const [isDeleting, setIsDeleting] = useState(false);
   const [isEditView, setIsEditView] = useState(false);
-  const timeoutRef = useTimeoutRef();
 
   if (!id) {
     return null;
@@ -28,10 +27,10 @@ export function AdminProductPage() {
     setIsEditView(true);
   };
 
-  const onSubmit = () => {
-    timeoutRef.current = setTimeout(() => {
-      setIsEditView(false);
-    }, 1000);
+  const onSubmit = async () => {
+    await wait(1000);
+
+    setIsEditView(false);
   };
 
   return (

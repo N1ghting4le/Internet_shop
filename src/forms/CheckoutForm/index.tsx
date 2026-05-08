@@ -8,11 +8,11 @@ import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { ORDERS_ROUTE } from "@/constants/routes";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
-import { useTimeoutRef } from "@/hooks/useTimeoutRef";
 import { calculateTotalCost } from "@/utils/calculateTotalCost";
 import { getPriceString } from "@/utils/getPriceString";
 import { loadCart } from "@/utils/loadCart";
 import { mergeClassNames } from "@/utils/mergeClassNames";
+import { wait } from "@/utils/wait";
 
 import {
   ENTER_DELIVERY_ADDRESS_TEXT,
@@ -29,7 +29,6 @@ import { saveOrder } from "./utils/saveOrder";
 export function CheckoutForm() {
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const timeoutRef = useTimeoutRef();
 
   const {
     register,
@@ -42,7 +41,7 @@ export function CheckoutForm() {
   const cart = loadCart();
   const totalPrice = calculateTotalCost(cart);
 
-  const onSubmit = (values: ClientInfo) => {
+  const onSubmit = async (values: ClientInfo) => {
     try {
       saveOrder(cart, values, totalPrice);
       clearCart();
@@ -50,9 +49,9 @@ export function CheckoutForm() {
       setIsError(false);
       setIsSuccess(true);
 
-      timeoutRef.current = setTimeout(() => {
-        navigate(ORDERS_ROUTE);
-      }, 1000);
+      await wait(1000);
+
+      navigate(ORDERS_ROUTE);
     } catch {
       setIsError(true);
     }

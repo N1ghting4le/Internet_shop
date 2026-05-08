@@ -6,6 +6,7 @@ import { ProductCard } from "../ProductCard";
 import { Loader } from "@/components/Loader";
 import { deleteItemById } from "@/utils/deleteItemById";
 import { mergeClassNames } from "@/utils/mergeClassNames";
+import { wait } from "@/utils/wait";
 
 import { LOADING_ERROR_TEXT, EMPTY_CATALOG_TEXT } from "./constants";
 import classes from "./styles.module.css";
@@ -20,7 +21,7 @@ export function ProductsList({
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    wait(1500).then(() => {
       try {
         setCatalogItems(getCatalogItems());
       } catch {
@@ -28,11 +29,7 @@ export function ProductsList({
       }
 
       setIsLoading(false);
-    }, 1500);
-
-    return () => {
-      clearTimeout(timeout);
-    };
+    });
   }, []);
 
   const deleteProductFromCatalog = (id: number) => {

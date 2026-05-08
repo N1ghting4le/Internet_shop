@@ -4,8 +4,8 @@ import { useNavigate } from "react-router";
 import { Button } from "@/components/Button";
 import { Loader } from "@/components/Loader";
 import { ADMIN_PRODUCTS_ROUTE } from "@/constants/routes";
-import { useTimeoutRef } from "@/hooks/useTimeoutRef";
 import { deleteProductFromStorage } from "@/utils/deleteProductFromStorage";
+import { wait } from "@/utils/wait";
 
 import { DELETE_TEXT, ERROR_TEXT } from "./constants";
 import classes from "./styles.module.css";
@@ -17,22 +17,21 @@ export function DeleteButton({
   setIsDeleting,
 }: DeleteButtonProps) {
   const [isError, setIsError] = useState(false);
-  const timeoutRef = useTimeoutRef();
   const navigate = useNavigate();
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     setIsDeleting(true);
 
-    timeoutRef.current = setTimeout(() => {
-      try {
-        deleteProductFromStorage(id);
-        navigate(ADMIN_PRODUCTS_ROUTE);
-      } catch {
-        setIsError(true);
-      }
+    await wait(1000);
 
-      setIsDeleting(false);
-    }, 1000);
+    try {
+      deleteProductFromStorage(id);
+      navigate(ADMIN_PRODUCTS_ROUTE);
+    } catch {
+      setIsError(true);
+    }
+
+    setIsDeleting(false);
   };
 
   return (

@@ -7,7 +7,7 @@ import { Input } from "@/components/Input";
 import { Loader } from "@/components/Loader";
 import { ADMIN_LOGIN, ADMIN_PASSWORD } from "@/constants/adminCredentials";
 import { ADMIN_PRODUCTS_ROUTE } from "@/constants/routes";
-import { useTimeoutRef } from "@/hooks/useTimeoutRef";
+import { wait } from "@/utils/wait";
 
 import { INCORRECT_LOGIN, INCORRECT_PASSWORD, LOGIN_TEXT } from "./constants";
 import type { FormValues } from "./types";
@@ -24,26 +24,25 @@ export function AdminLoginForm() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const timeoutRef = useTimeoutRef();
 
-  const onSubmit = (values: FormValues) => {
+  const onSubmit = async (values: FormValues) => {
     const { login, password } = values;
 
     setIsLoading(true);
     setError(null);
 
-    timeoutRef.current = setTimeout(() => {
-      if (login !== ADMIN_LOGIN) {
-        setError(INCORRECT_LOGIN);
-      } else if (password !== ADMIN_PASSWORD) {
-        setError(INCORRECT_PASSWORD);
-      } else {
-        saveAdminCredentials(values);
-        navigate(ADMIN_PRODUCTS_ROUTE);
-      }
+    await wait(500);
 
-      setIsLoading(false);
-    }, 500);
+    if (login !== ADMIN_LOGIN) {
+      setError(INCORRECT_LOGIN);
+    } else if (password !== ADMIN_PASSWORD) {
+      setError(INCORRECT_PASSWORD);
+    } else {
+      saveAdminCredentials(values);
+      navigate(ADMIN_PRODUCTS_ROUTE);
+    }
+
+    setIsLoading(false);
   };
 
   return (
