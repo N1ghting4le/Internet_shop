@@ -6,11 +6,12 @@ import { toast } from "react-toastify";
 import navigationIcon from "@/assets/navigation.svg";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
+import { EMPTY_CART_TEXT } from "@/constants/emptyCartText";
 import { ORDERS_ROUTE } from "@/constants/routes";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
+import { useCartItems } from "@/hooks/useCartItems";
 import { calculateTotalCost } from "@/utils/calculateTotalCost";
 import { getPriceString } from "@/utils/getPriceString";
-import { loadCart } from "@/utils/loadCart";
 import { mergeClassNames } from "@/utils/mergeClassNames";
 
 import {
@@ -32,14 +33,22 @@ export function CheckoutForm() {
     formState: { errors },
   } = useForm({ resolver: zodResolver(schema) });
   const { clearCartAmount } = useCartAmountContext();
+  const { cartItems, isError } = useCartItems();
   const navigate = useNavigate();
 
-  const cart = loadCart();
-  const totalPrice = calculateTotalCost(cart);
+  if (isError) {
+    return null;
+  }
+
+  if (!cartItems.length) {
+    return <p>{EMPTY_CART_TEXT}</p>;
+  }
+
+  const totalPrice = calculateTotalCost(cartItems);
 
   const onSubmit = async (values: ClientInfo) => {
     try {
-      saveOrder(cart, values, totalPrice);
+      saveOrder(cartItems, values, totalPrice);
       clearCart();
       clearCartAmount();
       toast.success(ORDER_CREATION_SUCCESS_TEXT);

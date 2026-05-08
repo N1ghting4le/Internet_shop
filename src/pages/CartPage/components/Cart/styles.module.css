@@ -40,10 +40,6 @@
   padding-inline: 67px;
 }
 
-.error {
-  color: var(--primary-red);
-}
-
 .list {
   padding: 40px 58px;
 }

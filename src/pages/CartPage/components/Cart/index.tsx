@@ -1,49 +1,31 @@
-import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router";
 
 import { Button } from "@/components/Button";
+import { EMPTY_CART_TEXT } from "@/constants/emptyCartText";
 import { CHECKOUT_ROUTE } from "@/constants/routes";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
-import { useUpdateEffect } from "@/hooks/useUpdateEffect";
 import { calculateTotalCost } from "@/utils/calculateTotalCost";
 import { deleteItemById } from "@/utils/deleteItemById";
 import { getPriceString } from "@/utils/getPriceString";
-import { loadCart } from "@/utils/loadCart";
 
 import { CartListItem } from "./components/CartListItem";
 import { CHECKOUT_TEXT } from "./constants";
+import { useUpdateCart } from "./hooks/useUpdateCart";
 import classes from "./styles.module.css";
 import type { CartProps } from "./types";
-import { updateCart } from "./utils/updateCart";
 import { updateItemAmountById } from "./utils/updateItemAmountById";
 
-export function Cart({ cartItems, setCartItems }: CartProps) {
+export function Cart({ cartItems, setCartItems, isError }: CartProps) {
   const { decrementCartAmount } = useCartAmountContext();
-  const [isError, setIsError] = useState(false);
-  const isCartLoadedRef = useRef(false);
 
-  useEffect(() => {
-    try {
-      setCartItems(loadCart());
-    } catch {
-      setIsError(true);
-    }
-  }, []);
-
-  useUpdateEffect(() => {
-    if (isCartLoadedRef.current) {
-      updateCart(cartItems);
-    } else {
-      isCartLoadedRef.current = true;
-    }
-  }, [cartItems]);
+  useUpdateCart(cartItems);
 
   if (isError) {
-    return <p className={classes.error}>Произошла ошибка</p>;
+    return null;
   }
 
   if (!cartItems.length) {
-    return <p>Корзина пуста</p>;
+    return <p>{EMPTY_CART_TEXT}</p>;
   }
 
   const incrementItem = (id: number) => () => {

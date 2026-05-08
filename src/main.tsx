@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router";
 import { ToastContainer } from "react-toastify";
 
 import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { ERROR_TEXT } from "@/constants/errorMessage";
+import { ERROR_TEXT } from "@/constants/errorTexts";
 
 import { App } from "./App";
 

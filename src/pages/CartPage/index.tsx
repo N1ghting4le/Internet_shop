@@ -1,6 +1,4 @@
-import { useState } from "react";
-
-import type { CartItem } from "@/types/cartItem";
+import { useCartItems } from "@/hooks/useCartItems";
 
 import { Cart } from "./components/Cart";
 import { ClearCartButton } from "./components/ClearCartButton";
@@ -8,7 +6,7 @@ import { CART_TEXT } from "./constants";
 import classes from "./styles.module.css";
 
 export function CartPage() {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const { cartItems, setCartItems, isError } = useCartItems();
 
   return (
     <main className={classes.main}>
@@ -16,7 +14,7 @@ export function CartPage() {
         <h1 className={classes.title}>{CART_TEXT}</h1>
         {!!cartItems.length && <ClearCartButton {...{ setCartItems }} />}
       </div>
-      <Cart {...{ cartItems, setCartItems }} />
+      <Cart {...{ cartItems, setCartItems, isError }} />
     </main>
   );
 }
