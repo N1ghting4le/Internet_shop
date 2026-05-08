@@ -1,13 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { createProduct } from "@/utils/createProduct";
-import { mergeClassNames } from "@/utils/mergeClassNames";
 import { updateProduct } from "@/utils/updateProduct";
-import { wait } from "@/utils/wait";
 
 import {
   EMPTY_VALUES,
@@ -25,9 +23,6 @@ export function ProductForm({
   product,
   onSubmit: externalOnSubmit,
 }: ProductFormProps) {
-  const [isError, setIsError] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
   const {
     register,
     handleSubmit,
@@ -46,15 +41,10 @@ export function ProductForm({
         externalOnSubmit(createProduct(values));
       }
 
-      setIsSuccess(true);
-      setIsError(false);
+      toast.success(getSuccessText(!!product));
       reset(EMPTY_VALUES);
-
-      await wait(1000);
-
-      setIsSuccess(false);
     } catch {
-      setIsError(true);
+      toast.error(ERROR_TEXT);
     }
   };
 
@@ -81,16 +71,6 @@ export function ProductForm({
       <Button type="submit" className={classes.button}>
         {product ? UPDATE_PRODUCT_TEXT : ADD_PRODUCT_TEXT}
       </Button>
-      {isSuccess && (
-        <p className={mergeClassNames(classes.message, classes.success)}>
-          {getSuccessText(!!product)}
-        </p>
-      )}
-      {isError && (
-        <p className={mergeClassNames(classes.message, classes.error)}>
-          {ERROR_TEXT}
-        </p>
-      )}
     </form>
   );
 }

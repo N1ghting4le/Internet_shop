@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 import { Button } from "@/components/Button";
 import { Loader } from "@/components/Loader";
@@ -7,7 +7,7 @@ import { ADMIN_PRODUCTS_ROUTE } from "@/constants/routes";
 import { deleteProductFromStorage } from "@/utils/deleteProductFromStorage";
 import { wait } from "@/utils/wait";
 
-import { DELETE_TEXT, ERROR_TEXT } from "./constants";
+import { DELETE_TEXT, ERROR_TEXT, SUCCESS_TEXT } from "./constants";
 import classes from "./styles.module.css";
 import type { DeleteButtonProps } from "./types";
 
@@ -16,7 +16,6 @@ export function DeleteButton({
   isDeleting,
   setIsDeleting,
 }: DeleteButtonProps) {
-  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
   const handleDelete = async () => {
@@ -26,9 +25,10 @@ export function DeleteButton({
 
     try {
       deleteProductFromStorage(id);
+      toast.success(SUCCESS_TEXT);
       navigate(ADMIN_PRODUCTS_ROUTE);
     } catch {
-      setIsError(true);
+      toast.error(ERROR_TEXT);
     }
 
     setIsDeleting(false);
@@ -41,7 +41,6 @@ export function DeleteButton({
       ) : (
         <Button onClick={handleDelete}>{DELETE_TEXT}</Button>
       )}
-      {isError && <p className={classes.error}>{ERROR_TEXT}</p>}
     </div>
   );
 }

@@ -9,18 +9,3 @@
 .button {
   margin-top: 20px;
 }
-
-.message {
-  position: absolute;
-  top: calc(100% + 10px);
-  text-align: center;
-  width: 100%;
-}
-
-.success {
-  color: var(--primary-green);
-}
-
-.error {
-  color: var(--primary-red);
-}

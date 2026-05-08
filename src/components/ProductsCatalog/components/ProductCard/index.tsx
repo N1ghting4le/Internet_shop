@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
 
 import { Button } from "@/components/Button";
 import { Loader } from "@/components/Loader";
@@ -10,7 +11,12 @@ import { getPriceString } from "@/utils/getPriceString";
 import { mergeClassNames } from "@/utils/mergeClassNames";
 import { wait } from "@/utils/wait";
 
-import { PLACEHOLDER_SRC, GO_TO_PRODUCT_TEXT, ERROR_TEXT } from "./constants";
+import {
+  PLACEHOLDER_SRC,
+  GO_TO_PRODUCT_TEXT,
+  ERROR_TEXT,
+  DELETE_SUCCESS_TEXT,
+} from "./constants";
 import classes from "./styles.module.css";
 import type { ProductCardProps } from "./types";
 import { getProductRoute } from "./utils/getProductRoute";
@@ -24,7 +30,6 @@ export function ProductCard({
   deleteProductFromCatalog,
 }: ProductCardProps) {
   const [isInCart, setIsInCart] = useState(isInCartInitial);
-  const [isError, setIsError] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const { incrementCartAmount } = useCartAmountContext();
 
@@ -37,9 +42,8 @@ export function ProductCard({
       addToCart(product);
       incrementCartAmount();
       setIsInCart(true);
-      setIsError(false);
     } catch {
-      setIsError(true);
+      toast.error(ERROR_TEXT);
     }
   };
 
@@ -53,8 +57,9 @@ export function ProductCard({
     try {
       deleteProductFromStorage(id);
       deleteProductFromCatalog(id);
+      toast.success(DELETE_SUCCESS_TEXT);
     } catch {
-      setIsError(true);
+      toast.error(ERROR_TEXT);
     }
 
     setIsDeleting(false);
@@ -88,7 +93,6 @@ export function ProductCard({
           {getTextForSecondButton(isInCart, isAdminRoute)}
         </Button>
       )}
-      {isError && <p className={classes.error}>{ERROR_TEXT}</p>}
     </li>
   );
 }

@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 import navigationIcon from "@/assets/navigation.svg";
 import { Button } from "@/components/Button";
@@ -12,7 +12,6 @@ import { calculateTotalCost } from "@/utils/calculateTotalCost";
 import { getPriceString } from "@/utils/getPriceString";
 import { loadCart } from "@/utils/loadCart";
 import { mergeClassNames } from "@/utils/mergeClassNames";
-import { wait } from "@/utils/wait";
 
 import {
   ENTER_DELIVERY_ADDRESS_TEXT,
@@ -27,9 +26,6 @@ import { clearCart } from "./utils/clearCart";
 import { saveOrder } from "./utils/saveOrder";
 
 export function CheckoutForm() {
-  const [isError, setIsError] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
   const {
     register,
     handleSubmit,
@@ -46,14 +42,10 @@ export function CheckoutForm() {
       saveOrder(cart, values, totalPrice);
       clearCart();
       clearCartAmount();
-      setIsError(false);
-      setIsSuccess(true);
-
-      await wait(1000);
-
+      toast.success(ORDER_CREATION_SUCCESS_TEXT);
       navigate(ORDERS_ROUTE);
     } catch {
-      setIsError(true);
+      toast.error(ERROR_TEXT);
     }
   };
 
@@ -90,14 +82,8 @@ export function CheckoutForm() {
             {getPriceString(totalPrice)}
           </p>
         </div>
-        <Button type="submit" disabled={isSuccess}>
-          {CREATE_ORDER_TEXT}
-        </Button>
+        <Button type="submit">{CREATE_ORDER_TEXT}</Button>
       </div>
-      {isSuccess && (
-        <p className={classes.success}>{ORDER_CREATION_SUCCESS_TEXT}</p>
-      )}
-      {isError && <p className={classes.error}>{ERROR_TEXT}</p>}
     </form>
   );
 }

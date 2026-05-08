@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
@@ -9,7 +10,12 @@ import { ADMIN_LOGIN, ADMIN_PASSWORD } from "@/constants/adminCredentials";
 import { ADMIN_PRODUCTS_ROUTE } from "@/constants/routes";
 import { wait } from "@/utils/wait";
 
-import { INCORRECT_LOGIN, INCORRECT_PASSWORD, LOGIN_TEXT } from "./constants";
+import {
+  INCORRECT_LOGIN,
+  INCORRECT_PASSWORD,
+  LOGIN_TEXT,
+  SUCCESS_TEXT,
+} from "./constants";
 import type { FormValues } from "./types";
 import { saveAdminCredentials } from "./utils/saveAdminCredentials";
 import { validationOptions } from "./validation";
@@ -23,21 +29,20 @@ export function AdminLoginForm() {
   } = useForm<FormValues>();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const onSubmit = async (values: FormValues) => {
     const { login, password } = values;
 
     setIsLoading(true);
-    setError(null);
 
     await wait(500);
 
     if (login !== ADMIN_LOGIN) {
-      setError(INCORRECT_LOGIN);
+      toast.error(INCORRECT_LOGIN);
     } else if (password !== ADMIN_PASSWORD) {
-      setError(INCORRECT_PASSWORD);
+      toast.error(INCORRECT_PASSWORD);
     } else {
+      toast.success(SUCCESS_TEXT);
       saveAdminCredentials(values);
       navigate(ADMIN_PRODUCTS_ROUTE);
     }
@@ -60,16 +65,13 @@ export function AdminLoginForm() {
         error={errors.password?.message}
         password
       />
-      <div className={classes.submitWrapper}>
-        {isLoading ? (
-          <Loader size={40} />
-        ) : (
-          <Button type="submit" className={classes.button}>
-            {LOGIN_TEXT}
-          </Button>
-        )}
-        {error && <p className={classes.error}>{error}</p>}
-      </div>
+      {isLoading ? (
+        <Loader size={40} />
+      ) : (
+        <Button type="submit" className={classes.button}>
+          {LOGIN_TEXT}
+        </Button>
+      )}
     </form>
   );
 }

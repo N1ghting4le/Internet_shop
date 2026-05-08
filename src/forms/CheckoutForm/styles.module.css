@@ -31,13 +31,3 @@
 .price {
   font-weight: 600;
 }
-
-.success {
-  color: var(--primary-green);
-  text-align: center;
-}
-
-.error {
-  color: var(--primary-red);
-  text-align: center;
-}

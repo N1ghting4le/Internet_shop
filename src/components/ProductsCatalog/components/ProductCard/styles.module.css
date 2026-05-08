@@ -58,11 +58,3 @@
   display: flex;
   justify-content: center;
 }
-
-.error {
-  color: var(--primary-red);
-  position: absolute;
-  top: calc(100% + 10px);
-  text-align: center;
-  width: 100%;
-}
