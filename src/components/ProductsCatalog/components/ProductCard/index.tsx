@@ -20,7 +20,7 @@ import {
 import classes from "./styles.module.css";
 import type { ProductCardProps } from "./types";
 import { getProductRoute } from "./utils/getProductRoute";
-import { getSecondClassNameForSecondButton } from "./utils/getSecondClassNameForSecondButton";
+import { getClassNameForSecondButton } from "./utils/getClassNameForSecondButton";
 import { getTextForSecondButton } from "./utils/getTextForSecondButton";
 
 export function ProductCard({
@@ -84,10 +84,7 @@ export function ProductCard({
         <Loader size={40} className={classes.loader} />
       ) : (
         <Button
-          className={mergeClassNames(
-            classes.button,
-            getSecondClassNameForSecondButton(isInCart, isAdminRoute),
-          )}
+          className={getClassNameForSecondButton(isInCart, isAdminRoute)}
           onClick={isAdminRoute ? handleDelete : handleAddToCart}
         >
           {getTextForSecondButton(isInCart, isAdminRoute)}
