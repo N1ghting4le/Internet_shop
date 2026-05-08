@@ -6,6 +6,7 @@ import { Button } from "@/components/Button";
 import { ProductInfo } from "@/components/ProductInfo";
 import { ProductForm } from "@/forms/ProductForm";
 import { useProduct } from "@/hooks/useProduct";
+import type { Product } from "@/types/product";
 import { wait } from "@/utils/wait";
 
 import { DeleteButton } from "./components/DeleteButton";
@@ -16,9 +17,9 @@ export function AdminProductPage() {
   const { id } = useParams();
   const [isDeleting, setIsDeleting] = useState(false);
   const [isEditView, setIsEditView] = useState(false);
-  const product = useProduct(id);
+  const { product, setProduct, isError } = useProduct(id);
 
-  if (!id) {
+  if (!id || isError) {
     return null;
   }
 
@@ -26,9 +27,10 @@ export function AdminProductPage() {
     setIsEditView(true);
   };
 
-  const onSubmit = async () => {
+  const onSubmit = async (updatedProduct: Product) => {
     await wait(1000);
 
+    setProduct(updatedProduct);
     setIsEditView(false);
   };
 

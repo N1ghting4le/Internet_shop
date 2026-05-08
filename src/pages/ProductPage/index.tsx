@@ -9,9 +9,9 @@ import classes from "./styles.module.css";
 
 export function ProductPage() {
   const { id } = useParams();
-  const product = useProduct(id);
+  const { product, isError } = useProduct(id);
 
-  if (!id) {
+  if (!id || isError) {
     return null;
   }
 
