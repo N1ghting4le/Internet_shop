@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 import { Button } from "@/components/Button";
 import { Loader } from "@/components/Loader";
-import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
+import { useCartAmountContext } from "@/contexts/CartAmountContext/hooks/useCartAmountContext";
 import { addToCart } from "@/utils/addToCart";
 import { deleteProductFromStorage } from "@/utils/deleteProductFromStorage";
 import { getPriceString } from "@/utils/getPriceString";

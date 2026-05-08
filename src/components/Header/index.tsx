@@ -10,7 +10,7 @@ import {
   ADMIN_LOGIN_ROUTE,
   ADMIN_PRODUCTS_ROUTE,
 } from "@/constants/routes";
-import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
+import { useCartAmountContext } from "@/contexts/CartAmountContext/hooks/useCartAmountContext";
 import { isAuthorizedAsAdmin } from "@/utils/isAuthorizedAsAdmin";
 
 import {

@@ -1,4 +1,4 @@
-import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
+import { useCartAmountContext } from "@/contexts/CartAmountContext/hooks/useCartAmountContext";
 
 import { CLEAR_CART_TEXT } from "./constants";
 import classes from "./styles.module.css";

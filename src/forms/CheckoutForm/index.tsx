@@ -8,7 +8,7 @@ import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { EMPTY_CART_TEXT } from "@/constants/emptyCartText";
 import { ORDERS_ROUTE } from "@/constants/routes";
-import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
+import { useCartAmountContext } from "@/contexts/CartAmountContext/hooks/useCartAmountContext";
 import { useCartItems } from "@/hooks/useCartItems";
 import { calculateTotalCost } from "@/utils/calculateTotalCost";
 import { getPriceString } from "@/utils/getPriceString";

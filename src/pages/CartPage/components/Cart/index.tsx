@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { Button } from "@/components/Button";
 import { EMPTY_CART_TEXT } from "@/constants/emptyCartText";
 import { CHECKOUT_ROUTE } from "@/constants/routes";
-import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
+import { useCartAmountContext } from "@/contexts/CartAmountContext/hooks/useCartAmountContext";
 import { calculateTotalCost } from "@/utils/calculateTotalCost";
 import { deleteItemById } from "@/utils/deleteItemById";
 import { getPriceString } from "@/utils/getPriceString";

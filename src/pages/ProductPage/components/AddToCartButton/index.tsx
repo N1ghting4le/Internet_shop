@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Button } from "@/components/Button";
-import { useCartAmountContext } from "@/contexts/CartAmountContext/useCartAmountContext";
+import { useCartAmountContext } from "@/contexts/CartAmountContext/hooks/useCartAmountContext";
 import { addToCart } from "@/utils/addToCart";
 
 import { PRODUCT_IN_CART_TEXT, ERROR_TEXT } from "./constants";

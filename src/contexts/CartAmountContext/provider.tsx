@@ -1,17 +1,10 @@
-import { useState, type PropsWithChildren } from "react";
-
-import { loadCart } from "@/utils/loadCart";
+import type { PropsWithChildren } from "react";
 
 import { CartAmountContext } from ".";
+import { useCartAmount } from "./hooks/useCartAmount";
 
 export function CartAmountContextProvider({ children }: PropsWithChildren) {
-  const [cartAmount, setCartAmount] = useState(() => {
-    try {
-      return loadCart().length;
-    } catch {
-      return 0;
-    }
-  });
+  const { cartAmount, setCartAmount } = useCartAmount();
 
   const incrementCartAmount = () => {
     setCartAmount((amount) => amount + 1);
