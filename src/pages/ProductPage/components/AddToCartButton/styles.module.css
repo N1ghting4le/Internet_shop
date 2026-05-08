@@ -1,11 +1,5 @@
-.wrapper {
+.button {
   width: 300px;
-}
-
-.error {
-  color: var(--primary-red);
-  margin-top: 10px;
-  text-align: center;
 }
 
 .inCart {
