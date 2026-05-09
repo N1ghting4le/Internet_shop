@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 
 import { Button } from "@/components/Button";
-import { EMPTY_CART_TEXT } from "@/constants/emptyCartText";
+import { EmptyCart } from "@/components/EmptyCart";
 import { CHECKOUT_ROUTE } from "@/constants/routes";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/hooks/useCartAmountContext";
 import { calculateTotalCost } from "@/utils/calculateTotalCost";
@@ -25,7 +25,7 @@ export function Cart({ cartItems, setCartItems, isError }: CartProps) {
   }
 
   if (!cartItems.length) {
-    return <p>{EMPTY_CART_TEXT}</p>;
+    return <EmptyCart />;
   }
 
   const incrementItem = (id: number) => () => {

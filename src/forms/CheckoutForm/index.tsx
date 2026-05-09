@@ -5,8 +5,8 @@ import { toast } from "react-toastify";
 
 import navigationIcon from "@/assets/navigation.svg";
 import { Button } from "@/components/Button";
+import { EmptyCart } from "@/components/EmptyCart";
 import { Input } from "@/components/Input";
-import { EMPTY_CART_TEXT } from "@/constants/emptyCartText";
 import { ORDERS_ROUTE } from "@/constants/routes";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/hooks/useCartAmountContext";
 import { useCartItems } from "@/hooks/useCartItems";
@@ -41,7 +41,7 @@ export function CheckoutForm() {
   }
 
   if (!cartItems.length) {
-    return <p>{EMPTY_CART_TEXT}</p>;
+    return <EmptyCart />;
   }
 
   const totalPrice = calculateTotalCost(cartItems);
