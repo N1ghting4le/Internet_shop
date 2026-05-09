@@ -1,10 +1,10 @@
 import { ProductCard } from "../ProductCard";
 
+import { EmptyCatalog } from "@/components/EmptyCatalog";
 import { Loader } from "@/components/Loader";
 import { deleteItemById } from "@/utils/deleteItemById";
 import { mergeClassNames } from "@/utils/mergeClassNames";
 
-import { EMPTY_CATALOG_TEXT } from "./constants";
 import classes from "./styles.module.css";
 import type { ProductsListProps } from "./types";
 
@@ -29,9 +29,9 @@ export function ProductsList({
 
   if (!catalogItems.length) {
     return (
-      <p className={mergeClassNames(classes.loadingAndMessage, classes.text)}>
-        {EMPTY_CATALOG_TEXT}
-      </p>
+      <EmptyCatalog
+        className={mergeClassNames(classes.loadingAndMessage, classes.text)}
+      />
     );
   }
 
