@@ -1,14 +1,14 @@
 import { PLACEHOLDER_SRC } from "../ProductsCatalog/components/ProductCard/constants";
 
+import { ProductNotFound } from "../ProductNotFound";
 import { getPriceString } from "@/utils/getPriceString";
 
-import { PRODUCT_NOT_FOUND_TEXT } from "./constants";
 import classes from "./styles.module.css";
 import type { ProductInfoProps } from "./types";
 
 export function ProductInfo({ product }: ProductInfoProps) {
   if (!product) {
-    return <h1 className={classes.titleOrPrice}>{PRODUCT_NOT_FOUND_TEXT}</h1>;
+    return <ProductNotFound className={classes.titleOrPrice} />;
   }
 
   const { title, description, price } = product;
