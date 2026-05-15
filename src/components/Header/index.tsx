@@ -11,7 +11,7 @@ import {
   ADMIN_PRODUCTS_ROUTE,
 } from "@/constants/routes";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/hooks/useCartAmountContext";
-import { isAuthorizedAsAdmin } from "@/utils/isAuthorizedAsAdmin";
+import { isAuthorizedAsAdmin } from "@/services/isAuthorizedAsAdmin";
 
 import {
   LOGO_TEXT,

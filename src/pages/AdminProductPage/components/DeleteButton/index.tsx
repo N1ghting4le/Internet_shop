@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { Button } from "@/components/Button";
 import { Loader } from "@/components/Loader";
 import { ADMIN_PRODUCTS_ROUTE } from "@/constants/routes";
-import { deleteProductFromStorage } from "@/utils/deleteProductFromStorage";
+import { deleteProductFromStorage } from "@/services/deleteProductFromStorage";
 import { wait } from "@/utils/wait";
 
 import { DELETE_TEXT, ERROR_TEXT, SUCCESS_TEXT } from "./constants";

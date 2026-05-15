@@ -1,4 +1,4 @@
-import { loadCart } from "@/utils/loadCart";
+import { loadCart } from "@/services/loadCart";
 
 export const isProductInCart = (id: number) => {
   const cart = loadCart();

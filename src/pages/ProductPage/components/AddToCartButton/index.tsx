@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 
 import { Button } from "@/components/Button";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/hooks/useCartAmountContext";
-import { addToCart } from "@/utils/addToCart";
+import { addToCart } from "@/services/addToCart";
 import { mergeClassNames } from "@/utils/mergeClassNames";
 
 import { PRODUCT_IN_CART_TEXT, ADD_TO_CART_ERROR_TEXT } from "./constants";

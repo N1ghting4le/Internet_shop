@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
-import { createProduct } from "@/utils/createProduct";
-import { updateProduct } from "@/utils/updateProduct";
+import { createProduct } from "@/services/createProduct";
+import { updateProduct } from "@/services/updateProduct";
 
 import {
   EMPTY_VALUES,

@@ -1,7 +1,7 @@
 import type { ProductInfo } from "@/types/product";
+import { getId } from "@/utils/getId";
 
 import { loadProducts } from "./loadProducts";
-import { getId } from "./getId";
 import { saveProducts } from "./saveProducts";
 
 export const createProduct = (productInfo: ProductInfo) => {

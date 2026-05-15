@@ -1,7 +1,7 @@
 import type { CatalogItem } from "../types";
 
-import { loadCart } from "@/utils/loadCart";
-import { loadProducts } from "@/utils/loadProducts";
+import { loadCart } from "@/services/loadCart";
+import { loadProducts } from "@/services/loadProducts";
 
 export const getCatalogItems = (): CatalogItem[] => {
   const products = loadProducts();

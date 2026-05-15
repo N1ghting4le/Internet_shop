@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 import { CART_LOADING_ERROR_TEXT } from "@/constants/errorTexts";
 import type { CartItem } from "@/types/cartItem";
-import { loadCart } from "@/utils/loadCart";
+import { loadCart } from "@/services/loadCart";
 
 export const useCartItems = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);

@@ -2,7 +2,7 @@ import type { ClientInfo } from "../schema";
 
 import { ORDERS_HISTORY_KEY } from "@/constants/localStorageKeys";
 import type { CartItem } from "@/types/cartItem";
-import { loadOrdersHistory } from "@/utils/loadOrdersHistory";
+import { loadOrdersHistory } from "@/services/loadOrdersHistory";
 import { getId } from "@/utils/getId";
 
 export const saveOrder = (

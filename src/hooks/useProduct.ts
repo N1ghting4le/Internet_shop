@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 import { PRODUCT_LOADING_ERROR_TEXT } from "@/constants/errorTexts";
 import type { Product } from "@/types/product";
-import { loadProductById } from "@/utils/loadProductById";
+import { loadProductById } from "@/services/loadProductById";
 
 export const useProduct = (id?: string) => {
   const [product, setProduct] = useState<Product | undefined>();

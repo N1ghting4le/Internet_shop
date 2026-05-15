@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 import { ERROR_TEXT } from "../constants";
 
-import { loadOrdersHistory } from "@/utils/loadOrdersHistory";
+import { loadOrdersHistory } from "@/services/loadOrdersHistory";
 import type { Order } from "@/types/order";
 
 export const useOrdersHistory = () => {

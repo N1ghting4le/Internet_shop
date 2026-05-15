@@ -1,4 +1,5 @@
-import { findById } from "./findById";
+import { findById } from "@/utils/findById";
+
 import { loadProducts } from "./loadProducts";
 
 export const loadProductById = (id: string) => {
