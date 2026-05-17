@@ -1,9 +1,12 @@
 const ADMIN_PREFIX = "/admin";
+const PRODUCTS_ROUTE = "/products";
 
-export const PRODUCTS_ROUTE = "/products";
-export const ADMIN_LOGIN_ROUTE = `${ADMIN_PREFIX}/login`;
-export const ADMIN_PRODUCTS_ROUTE = `${ADMIN_PREFIX}${PRODUCTS_ROUTE}`;
-export const CATALOG_ROUTE = "/";
-export const ORDERS_ROUTE = "/orders";
-export const CART_ROUTE = "/cart";
-export const CHECKOUT_ROUTE = "/checkout";
+export const routes = {
+  PRODUCTS_ROUTE,
+  ADMIN_LOGIN_ROUTE: `${ADMIN_PREFIX}/login`,
+  ADMIN_PRODUCTS_ROUTE: `${ADMIN_PREFIX}${PRODUCTS_ROUTE}`,
+  CATALOG_ROUTE: "/",
+  ORDERS_ROUTE: "/orders",
+  CART_ROUTE: "/cart",
+  CHECKOUT_ROUTE: "/checkout",
+};

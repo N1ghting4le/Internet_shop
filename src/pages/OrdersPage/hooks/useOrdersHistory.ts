@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-import { ERROR_TEXT } from "../constants";
+import { texts } from "../constants";
 
 import { loadOrdersHistory } from "@/services/loadOrdersHistory";
 import type { Order } from "@/types/order";
@@ -15,7 +15,7 @@ export const useOrdersHistory = () => {
       setOrders(loadOrdersHistory());
     } catch {
       setIsError(true);
-      toast.error(ERROR_TEXT);
+      toast.error(texts.ERROR_TEXT);
     }
   }, []);
 

@@ -3,13 +3,15 @@ import { toast } from "react-toastify";
 
 import { Button } from "@/components/Button";
 import { Loader } from "@/components/Loader";
-import { ADMIN_PRODUCTS_ROUTE } from "@/constants/routes";
+import { routes } from "@/constants/routes";
 import { deleteProductFromStorage } from "@/services/deleteProductFromStorage";
 import { wait } from "@/utils/wait";
 
-import { DELETE_TEXT, ERROR_TEXT, SUCCESS_TEXT } from "./constants";
+import { texts } from "./constants";
 import classes from "./styles.module.css";
 import type { DeleteButtonProps } from "./types";
+
+const { DELETE_TEXT, ERROR_TEXT, SUCCESS_TEXT } = texts;
 
 export function DeleteButton({
   id,
@@ -26,7 +28,7 @@ export function DeleteButton({
     try {
       deleteProductFromStorage(id);
       toast.success(SUCCESS_TEXT);
-      navigate(ADMIN_PRODUCTS_ROUTE);
+      navigate(routes.ADMIN_PRODUCTS_ROUTE);
     } catch {
       toast.error(ERROR_TEXT);
     }

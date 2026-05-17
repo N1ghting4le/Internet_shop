@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes } from "react";
 import { useNavigate } from "react-router";
 
 import { Button } from "@/components/Button";
-import { ADMIN_LOGIN_ROUTE } from "@/constants/routes";
+import { routes } from "@/constants/routes";
 
 import { removeAdminCredentials } from "./utils/removeAdminCredentials";
 
@@ -13,7 +13,7 @@ export function LogoutButton(
 
   const handleLogout = () => {
     removeAdminCredentials();
-    navigate(ADMIN_LOGIN_ROUTE);
+    navigate(routes.ADMIN_LOGIN_ROUTE);
   };
 
   return (

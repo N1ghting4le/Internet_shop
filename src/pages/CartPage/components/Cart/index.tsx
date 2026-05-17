@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 import { Button } from "@/components/Button";
 import { EmptyCart } from "@/components/EmptyCart";
-import { CHECKOUT_ROUTE } from "@/constants/routes";
+import { routes } from "@/constants/routes";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/hooks/useCartAmountContext";
 import { calculateTotalCost } from "@/utils/calculateTotalCost";
 import { deleteItemById } from "@/utils/deleteItemById";
@@ -50,7 +50,7 @@ export function Cart({ cartItems, setCartItems, isError }: CartProps) {
             {getPriceString(calculateTotalCost(cartItems))}
           </p>
         </div>
-        <Link to={CHECKOUT_ROUTE}>
+        <Link to={routes.CHECKOUT_ROUTE}>
           <Button className={classes.button}>{CHECKOUT_TEXT}</Button>
         </Link>
       </div>

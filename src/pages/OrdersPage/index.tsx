@@ -1,10 +1,12 @@
 import { getPriceString } from "@/utils/getPriceString";
 
-import { ORDERS_HISTORY_TEXT, EMPTY_ORDERS_HISTORY_TEXT } from "./constants";
+import { texts } from "./constants";
 import { useOrdersHistory } from "./hooks/useOrdersHistory";
 import classes from "./styles.module.css";
 import { getDateString } from "./utils/getDateString";
 import { getProductString } from "./utils/getProductString";
+
+const { ORDERS_HISTORY_TEXT, EMPTY_ORDERS_HISTORY_TEXT } = texts;
 
 export function OrdersPage() {
   const { orders, isError } = useOrdersHistory();

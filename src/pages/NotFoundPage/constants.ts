@@ -1,4 +1,6 @@
-export const TITLE = "404";
-export const MAIN_TEXT =
-  "Страница не найдена. Она могла быть перемещена, или её просто не существует";
-export const LINK_TEXT = "Вернуться домой";
+export const texts = {
+  ERROR_CODE: "404",
+  MAIN_TEXT:
+    "Страница не найдена. Она могла быть перемещена, или её просто не существует",
+  LINK_TEXT: "Вернуться домой",
+};

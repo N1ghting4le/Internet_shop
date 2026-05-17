@@ -1,9 +1,11 @@
 import { Link } from "react-router";
 
-import { CATALOG_ROUTE } from "@/constants/routes";
+import { routes } from "@/constants/routes";
 
-import { MAIN_TEXT, LINK_TEXT, TITLE } from "./constants";
+import { texts } from "./constants";
 import classes from "./styles.module.css";
+
+const { ERROR_CODE, MAIN_TEXT, LINK_TEXT } = texts;
 
 export function NotFoundPage() {
   return (
@@ -100,9 +102,9 @@ export function NotFoundPage() {
         </svg>
       </div>
       <div>
-        <h1 className={classes.title}>{TITLE}</h1>
+        <h1 className={classes.title}>{ERROR_CODE}</h1>
         <p className={classes.text}>{MAIN_TEXT}</p>
-        <Link className={classes.btnLink} to={CATALOG_ROUTE}>
+        <Link className={classes.btnLink} to={routes.CATALOG_ROUTE}>
           {LINK_TEXT}
         </Link>
       </div>

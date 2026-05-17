@@ -5,11 +5,13 @@ import { useCartAmountContext } from "@/contexts/CartAmountContext/hooks/useCart
 import { addToCart } from "@/services/addToCart";
 import { mergeClassNames } from "@/utils/mergeClassNames";
 
-import { PRODUCT_IN_CART_TEXT, ADD_TO_CART_ERROR_TEXT } from "./constants";
+import { texts } from "./constants";
 import { useIsInCart } from "./hooks/useIsInCart";
 import classes from "./styles.module.css";
 import type { AddToCartButtonProps } from "./types";
 import { getAddToCartButtonText } from "./utils/getAddToCartButtonText";
+
+const { PRODUCT_IN_CART_TEXT, ADD_TO_CART_ERROR_TEXT } = texts;
 
 export function AddToCartButton({ product }: AddToCartButtonProps) {
   const { isInCart, setIsInCart, isError } = useIsInCart(product.id);

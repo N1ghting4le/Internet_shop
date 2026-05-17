@@ -3,25 +3,29 @@ import { Link } from "react-router";
 import cart from "@/assets/Basket.svg";
 import { Button } from "@/components/Button";
 import { LogoutButton } from "../LogoutButton";
-import {
+import { routes } from "@/constants/routes";
+import { useCartAmountContext } from "@/contexts/CartAmountContext/hooks/useCartAmountContext";
+import { isAuthorizedAsAdmin } from "@/services/isAuthorizedAsAdmin";
+
+import { texts } from "./constants";
+import classes from "./styles.module.css";
+import type { HeaderProps } from "./types";
+
+const {
   CATALOG_ROUTE,
   ORDERS_ROUTE,
   CART_ROUTE,
   ADMIN_LOGIN_ROUTE,
   ADMIN_PRODUCTS_ROUTE,
-} from "@/constants/routes";
-import { useCartAmountContext } from "@/contexts/CartAmountContext/hooks/useCartAmountContext";
-import { isAuthorizedAsAdmin } from "@/services/isAuthorizedAsAdmin";
+} = routes;
 
-import {
+const {
   LOGO_TEXT,
   ORDERS_HISTORY_TEXT,
   LOGOUT_TEXT,
   LOGIN_TEXT,
   ADMIN_PANEL_TEXT,
-} from "./constants";
-import classes from "./styles.module.css";
-import type { HeaderProps } from "./types";
+} = texts;
 
 export function Header({ isAdminRoute, hideLogin }: HeaderProps) {
   const { cartAmount } = useCartAmountContext();

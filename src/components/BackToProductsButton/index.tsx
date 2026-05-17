@@ -1,11 +1,13 @@
 import { Link } from "react-router";
 
 import chevronLeft from "@/assets/chevron-left.svg";
-import { ADMIN_PRODUCTS_ROUTE, CATALOG_ROUTE } from "@/constants/routes";
+import { routes } from "@/constants/routes";
 
 import { BACK_TO_PRODUCTS_TEXT } from "./constants";
 import classes from "./styles.module.css";
 import type { BackToProductsButtonProps } from "./types";
+
+const { ADMIN_PRODUCTS_ROUTE, CATALOG_ROUTE } = routes;
 
 export function BackToProductsButton({
   isAdminRoute,

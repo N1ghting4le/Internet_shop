@@ -1,4 +1,6 @@
-export const INCORRECT_LOGIN = "Неверный логин";
-export const INCORRECT_PASSWORD = "Неверный пароль";
-export const LOGIN_TEXT = "Войти";
-export const SUCCESS_TEXT = "Авторизация прошла успешно";
+export const texts = {
+  INCORRECT_LOGIN: "Неверный логин",
+  INCORRECT_PASSWORD: "Неверный пароль",
+  LOGIN_TEXT: "Войти",
+  SUCCESS_TEXT: "Авторизация прошла успешно",
+};

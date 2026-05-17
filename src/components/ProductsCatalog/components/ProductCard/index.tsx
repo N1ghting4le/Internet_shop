@@ -11,17 +11,14 @@ import { getPriceString } from "@/utils/getPriceString";
 import { mergeClassNames } from "@/utils/mergeClassNames";
 import { wait } from "@/utils/wait";
 
-import {
-  PLACEHOLDER_SRC,
-  GO_TO_PRODUCT_TEXT,
-  ERROR_TEXT,
-  DELETE_SUCCESS_TEXT,
-} from "./constants";
+import { PLACEHOLDER_SRC, texts } from "./constants";
 import classes from "./styles.module.css";
 import type { ProductCardProps } from "./types";
 import { getProductRoute } from "./utils/getProductRoute";
 import { getClassNameForSecondButton } from "./utils/getClassNameForSecondButton";
 import { getTextForSecondButton } from "./utils/getTextForSecondButton";
+
+const { GO_TO_PRODUCT_TEXT, ERROR_TEXT, DELETE_SUCCESS_TEXT } = texts;
 
 export function ProductCard({
   isAdminRoute,

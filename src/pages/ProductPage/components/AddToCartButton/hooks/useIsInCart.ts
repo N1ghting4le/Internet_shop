@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-import { CHECK_IS_IN_CART_ERROR_TEXT } from "../constants";
+import { texts } from "../constants";
 import { isProductInCart } from "../utils/isProductInCart";
 
 export const useIsInCart = (id: number) => {
@@ -12,7 +12,7 @@ export const useIsInCart = (id: number) => {
     try {
       setIsInCart(isProductInCart(id));
     } catch {
-      toast.error(CHECK_IS_IN_CART_ERROR_TEXT);
+      toast.error(texts.CHECK_IS_IN_CART_ERROR_TEXT);
       setIsError(true);
     }
   }, [id]);

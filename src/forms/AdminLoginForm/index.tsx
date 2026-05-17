@@ -7,19 +7,16 @@ import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Loader } from "@/components/Loader";
 import { ADMIN_LOGIN, ADMIN_PASSWORD } from "@/constants/adminCredentials";
-import { ADMIN_PRODUCTS_ROUTE } from "@/constants/routes";
+import { routes } from "@/constants/routes";
 import { wait } from "@/utils/wait";
 
-import {
-  INCORRECT_LOGIN,
-  INCORRECT_PASSWORD,
-  LOGIN_TEXT,
-  SUCCESS_TEXT,
-} from "./constants";
+import { texts } from "./constants";
 import type { FormValues } from "./types";
 import { saveAdminCredentials } from "./utils/saveAdminCredentials";
 import { validationOptions } from "./validation";
 import classes from "./styles.module.css";
+
+const { INCORRECT_LOGIN, INCORRECT_PASSWORD, LOGIN_TEXT, SUCCESS_TEXT } = texts;
 
 export function AdminLoginForm() {
   const {
@@ -44,7 +41,7 @@ export function AdminLoginForm() {
     } else {
       toast.success(SUCCESS_TEXT);
       saveAdminCredentials(values);
-      navigate(ADMIN_PRODUCTS_ROUTE);
+      navigate(routes.ADMIN_PRODUCTS_ROUTE);
     }
 
     setIsLoading(false);

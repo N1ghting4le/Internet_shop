@@ -7,24 +7,26 @@ import navigationIcon from "@/assets/navigation.svg";
 import { Button } from "@/components/Button";
 import { EmptyCart } from "@/components/EmptyCart";
 import { Input } from "@/components/Input";
-import { ORDERS_ROUTE } from "@/constants/routes";
+import { routes } from "@/constants/routes";
 import { useCartAmountContext } from "@/contexts/CartAmountContext/hooks/useCartAmountContext";
 import { useCartItems } from "@/hooks/useCartItems";
 import { calculateTotalCost } from "@/utils/calculateTotalCost";
 import { getPriceString } from "@/utils/getPriceString";
 import { mergeClassNames } from "@/utils/mergeClassNames";
 
-import {
+import { texts } from "./constants";
+import { schema, type ClientInfo } from "./schema";
+import classes from "./styles.module.css";
+import { clearCart } from "./utils/clearCart";
+import { saveOrder } from "./utils/saveOrder";
+
+const {
   ENTER_DELIVERY_ADDRESS_TEXT,
   CREATE_ORDER_TEXT,
   ORDER_CREATION_SUCCESS_TEXT,
   ERROR_TEXT,
   TOTAL_TEXT,
-} from "./constants";
-import { schema, type ClientInfo } from "./schema";
-import classes from "./styles.module.css";
-import { clearCart } from "./utils/clearCart";
-import { saveOrder } from "./utils/saveOrder";
+} = texts;
 
 export function CheckoutForm() {
   const {
@@ -52,7 +54,7 @@ export function CheckoutForm() {
       clearCart();
       clearCartAmount();
       toast.success(ORDER_CREATION_SUCCESS_TEXT);
-      navigate(ORDERS_ROUTE);
+      navigate(routes.ORDERS_ROUTE);
     } catch {
       toast.error(ERROR_TEXT);
     }

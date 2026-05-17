@@ -7,17 +7,14 @@ import { Input } from "@/components/Input";
 import { createProduct } from "@/services/createProduct";
 import { updateProduct } from "@/services/updateProduct";
 
-import {
-  EMPTY_VALUES,
-  UPDATE_PRODUCT_TEXT,
-  ADD_PRODUCT_TEXT,
-  ERROR_TEXT,
-} from "./constants";
+import { EMPTY_VALUES, texts } from "./constants";
 import classes from "./styles.module.css";
 import { schema, type ProductInfo } from "./schema";
 import type { ProductFormProps } from "./types";
 import { getDefaultValues } from "./utils/getDefaultValues";
 import { getSuccessText } from "./utils/getSuccessText";
+
+const { UPDATE_PRODUCT_TEXT, ADD_PRODUCT_TEXT, ERROR_TEXT } = texts;
 
 export function ProductForm({
   product,

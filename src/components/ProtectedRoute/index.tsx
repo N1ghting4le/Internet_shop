@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from "react";
 import { Navigate } from "react-router";
 
-import { ADMIN_LOGIN_ROUTE } from "@/constants/routes";
+import { routes } from "@/constants/routes";
 import { isAuthorizedAsAdmin } from "@/services/isAuthorizedAsAdmin";
 
 export function ProtectedRoute({ children }: PropsWithChildren) {
@@ -9,5 +9,5 @@ export function ProtectedRoute({ children }: PropsWithChildren) {
     return children;
   }
 
-  return <Navigate to={ADMIN_LOGIN_ROUTE} replace />;
+  return <Navigate to={routes.ADMIN_LOGIN_ROUTE} replace />;
 }
